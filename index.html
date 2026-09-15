@@ -2089,7 +2089,16 @@
       grid-template-columns: repeat(8, 1fr);
     }
 
-  </style>
+  
+    body.is-offline #spotifyDock,
+    body.is-offline [data-net-only="1"] {
+      opacity: 0.45 !important;
+      pointer-events: none !important;
+      filter: grayscale(0.4);
+    }
+    body.is-offline #offlineBadge { animation: offPulse 1.6s ease-in-out infinite; }
+    @keyframes offPulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+</style>
 </head>
 <body>
   <div id="deviceBadge" aria-hidden="true"></div>
@@ -2457,7 +2466,7 @@
 
       
       <div id="immersionPanel" class="card" style="margin-bottom:12px;padding:12px 14px;border:1px solid rgba(0,231,1,0.28);background:linear-gradient(145deg,rgba(0,231,1,0.07),rgba(12,16,24,0.95));">
-        <div style="font-weight:800;font-size:0.85rem;margin-bottom:8px;color:var(--accent2);">🌐 Imersão CS2 <span style="font-size:0.65rem;background:#00e701;color:#000;padding:2px 6px;border-radius:6px;margin-left:4px;">v7.1</span></div>
+        <div style="font-weight:800;font-size:0.85rem;margin-bottom:8px;color:var(--accent2);">🌐 Imersão CS2 <span style="font-size:0.65rem;background:#00e701;color:#000;padding:2px 6px;border-radius:6px;margin-left:4px;">v7.4</span></div>
         <div id="immersionBody" style="font-size:0.78rem;line-height:1.5;color:var(--muted);">Avança o mês para gerar desafio, meta Valve e rival.</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
           <button type="button" class="btn btn-secondary" style="width:auto;margin:0;padding:6px 10px;font-size:0.72rem;" onclick="showExtra('hub')">⚡ Hub</button>
@@ -3378,6 +3387,130 @@ const AudioFX = {
       { name: "Eternal Fire", tier: 1, strength: 84, rank: 13 },
       { name: "GamerLegion", tier: 1, strength: 83, rank: 14 },
       { name: "Passion UA", tier: 1, strength: 82, rank: 15 },
+      // +100 times reais / regionais / academy / amadores
+      { name: "OG", tier: 2, strength: 74, rank: 37 },
+      { name: "Into The Breach", tier: 2, strength: 71, rank: 42 },
+      { name: "Monte", tier: 2, strength: 73, rank: 39 },
+      { name: "Sashi", tier: 2, strength: 70, rank: 45 },
+      { name: "ECSTATIC", tier: 2, strength: 72, rank: 40 },
+      { name: "Ninjas in Pyjamas", tier: 2, strength: 73, rank: 33 },
+      { name: "Sangal", tier: 2, strength: 71, rank: 41 },
+      { name: "Permitta", tier: 2, strength: 69, rank: 48 },
+      { name: "Zero Tenacity", tier: 2, strength: 70, rank: 46 },
+      { name: "PARIVISION", tier: 2, strength: 76, rank: 27 },
+      { name: "Nemiga", tier: 2, strength: 72, rank: 38 },
+      { name: "FORZE", tier: 2, strength: 71, rank: 43 },
+      { name: "AMKAL", tier: 2, strength: 70, rank: 44 },
+      { name: "1WIN", tier: 2, strength: 69, rank: 47 },
+      { name: "Rebels", tier: 2, strength: 68, rank: 50 },
+      { name: "Metizport", tier: 2, strength: 71, rank: 41 },
+      { name: "Alliance", tier: 2, strength: 69, rank: 49 },
+      { name: "KOI", tier: 2, strength: 72, rank: 39 },
+      { name: "Movistar Riders", tier: 2, strength: 70, rank: 45 },
+      { name: "GTZ", tier: 2, strength: 68, rank: 51 },
+      { name: "M80", tier: 2, strength: 74, rank: 36 },
+      { name: "Nouns", tier: 2, strength: 71, rank: 42 },
+      { name: "Party Astronauts", tier: 2, strength: 67, rank: 55 },
+      { name: "Wildcard", tier: 2, strength: 73, rank: 35 },
+      { name: "NRG", tier: 2, strength: 75, rank: 31 },
+      { name: "BOSS", tier: 2, strength: 68, rank: 52 },
+      { name: "Lag", tier: 2, strength: 66, rank: 58 },
+      { name: "Mythic", tier: 2, strength: 65, rank: 60 },
+      { name: "TSM", tier: 2, strength: 69, rank: 50 },
+      { name: "Gaimin Gladiators", tier: 2, strength: 72, rank: 40 },
+      { name: "Apeks", tier: 2, strength: 71, rank: 43 },
+      { name: "Sprout", tier: 2, strength: 68, rank: 53 },
+      { name: "ALTERNATE aTTaX", tier: 2, strength: 67, rank: 54 },
+      { name: "Sinners", tier: 2, strength: 70, rank: 46 },
+      { name: "Endpoint", tier: 2, strength: 66, rank: 57 },
+      { name: "Illuminar", tier: 2, strength: 67, rank: 56 },
+      { name: "Anonymo", tier: 2, strength: 66, rank: 59 },
+      { name: "HAVU", tier: 2, strength: 68, rank: 52 },
+      { name: "JANO", tier: 2, strength: 65, rank: 61 },
+      { name: "Gamer2Gamer", tier: 2, strength: 64, rank: 62 },
+      { name: "eArena", tier: 2, strength: 63, rank: 64 },
+      { name: "Lynn Vision", tier: 2, strength: 74, rank: 34 },
+      { name: "Rare Atom", tier: 2, strength: 72, rank: 38 },
+      { name: "TYLOO", tier: 2, strength: 73, rank: 36 },
+      { name: "The Huns", tier: 2, strength: 71, rank: 42 },
+      { name: "Chinggis Warriors", tier: 2, strength: 70, rank: 45 },
+      { name: "Dewa United", tier: 2, strength: 65, rank: 63 },
+      { name: "Grayhound", tier: 2, strength: 69, rank: 49 },
+      { name: "Rooster", tier: 2, strength: 66, rank: 58 },
+      { name: "Mindfreak", tier: 2, strength: 64, rank: 65 },
+      { name: "ORDER", tier: 2, strength: 67, rank: 55 },
+      { name: "Chiefs", tier: 2, strength: 65, rank: 60 },
+      { name: "Sharks Esports", tier: 3, strength: 63, rank: 80, circuit: "regional" },
+      { name: "Solid", tier: 3, strength: 60, rank: 86, circuit: "regional" },
+      { name: "Corinthians Esports", tier: 3, strength: 58, rank: 90, circuit: "regional" },
+      { name: "Flamengo Esports", tier: 3, strength: 57, rank: 92, circuit: "regional" },
+      { name: "LOS", tier: 3, strength: 59, rank: 88, circuit: "regional" },
+      { name: "Elevate BR", tier: 3, strength: 56, rank: 94, circuit: "regional" },
+      { name: "Keyd Stars", tier: 3, strength: 55, rank: 95, circuit: "regional" },
+      { name: "Vivo Keyd", tier: 3, strength: 54, rank: 97, circuit: "regional" },
+      { name: "Detonate", tier: 3, strength: 58, rank: 89, circuit: "regional" },
+      { name: "TropiCaos", tier: 3, strength: 57, rank: 91, circuit: "regional" },
+      { name: "Teams Magic", tier: 3, strength: 56, rank: 93, circuit: "regional" },
+      { name: "Players", tier: 3, strength: 55, rank: 96, circuit: "regional" },
+      { name: "Ex-W7M", tier: 3, strength: 58, rank: 90, circuit: "regional" },
+      { name: "Hype", tier: 3, strength: 54, rank: 98, circuit: "regional" },
+      { name: "Young Gods", tier: 3, strength: 53, rank: 100, circuit: "academy" },
+      { name: "FURIA Female", tier: 3, strength: 55, rank: 96, circuit: "regional" },
+      { name: "MIBR Academy Plus", tier: 3, strength: 54, rank: 97, circuit: "academy" },
+      { name: "Imperial Academy Plus", tier: 3, strength: 53, rank: 99, circuit: "academy" },
+      { name: "paiN Academy Plus", tier: 3, strength: 54, rank: 98, circuit: "academy" },
+      { name: "Natus Vincere Junior", tier: 3, strength: 61, rank: 82, circuit: "academy" },
+      { name: "Spirit Youth", tier: 3, strength: 59, rank: 86, circuit: "academy" },
+      { name: "Vitality Rising", tier: 3, strength: 58, rank: 88, circuit: "academy" },
+      { name: "G2 Ambition", tier: 3, strength: 57, rank: 90, circuit: "academy" },
+      { name: "FaZe Youth", tier: 3, strength: 56, rank: 92, circuit: "academy" },
+      { name: "MOUZ Academy", tier: 3, strength: 60, rank: 84, circuit: "academy" },
+      { name: "Heroic Academy", tier: 3, strength: 57, rank: 89, circuit: "academy" },
+      { name: "Astralis Talent", tier: 3, strength: 56, rank: 91, circuit: "academy" },
+      { name: "ENCE Academy", tier: 3, strength: 55, rank: 93, circuit: "academy" },
+      { name: "NIP Impact", tier: 3, strength: 54, rank: 95, circuit: "academy" },
+      { name: "BIG Academy", tier: 3, strength: 55, rank: 94, circuit: "academy" },
+      { name: "OG Academy", tier: 3, strength: 54, rank: 96, circuit: "academy" },
+      { name: "ECSTATIC Academy", tier: 3, strength: 53, rank: 99, circuit: "academy" },
+      { name: "Faceit Open Cup", tier: 4, strength: 42, rank: 168, circuit: "faceit" },
+      { name: "Faceit Challenger", tier: 4, strength: 44, rank: 160, circuit: "faceit" },
+      { name: "ESEA Main Mix", tier: 4, strength: 43, rank: 163, circuit: "faceit" },
+      { name: "ESEA Intermediate", tier: 4, strength: 40, rank: 174, circuit: "faceit" },
+      { name: "ESEA Open", tier: 4, strength: 36, rank: 188, circuit: "faceit" },
+      { name: "Gamers Club Série A", tier: 4, strength: 45, rank: 158, circuit: "gc" },
+      { name: "Gamers Club Série B", tier: 4, strength: 41, rank: 170, circuit: "gc" },
+      { name: "CBCS Academy", tier: 4, strength: 40, rank: 173, circuit: "mix" },
+      { name: "Liga Pro BR", tier: 4, strength: 42, rank: 166, circuit: "mix" },
+      { name: "Mix NA Rookie", tier: 4, strength: 38, rank: 181, circuit: "mix" },
+      { name: "Mix EU Rookie", tier: 4, strength: 39, rank: 177, circuit: "mix" },
+      { name: "Mix CIS Rookie", tier: 4, strength: 40, rank: 175, circuit: "mix" },
+      { name: "Mix Asia Rookie", tier: 4, strength: 37, rank: 184, circuit: "mix" },
+      { name: "University CS League", tier: 4, strength: 35, rank: 192, circuit: "mix" },
+      { name: "High School CS", tier: 4, strength: 33, rank: 198, circuit: "mix" },
+      { name: "LAN Cafe Pros", tier: 4, strength: 36, rank: 189, circuit: "mix" },
+      { name: "Discord Mix Elite", tier: 4, strength: 41, rank: 171, circuit: "mix" },
+      { name: "Twitch Rivals Mix", tier: 4, strength: 43, rank: 164, circuit: "mix" },
+      { name: "Streamer Stack", tier: 4, strength: 40, rank: 174, circuit: "mix" },
+      { name: "RETZ", tier: 3, strength: 57, rank: 91, circuit: "regional" },
+      { name: "ULT", tier: 3, strength: 56, rank: 93, circuit: "regional" },
+      { name: "BESTIA Academy", tier: 3, strength: 55, rank: 95, circuit: "academy" },
+      { name: "KRÜ", tier: 2, strength: 70, rank: 47 },
+      { name: "Isurus Gaming", tier: 2, strength: 69, rank: 48 },
+      { name: "Leviatán", tier: 2, strength: 68, rank: 51 },
+      { name: "9z Academy Plus", tier: 3, strength: 56, rank: 92, circuit: "academy" },
+      { name: "Team Secret", tier: 2, strength: 67, rank: 54 },
+      { name: "Dignitas", tier: 2, strength: 68, rank: 52 },
+      { name: "Evil Geniuses", tier: 2, strength: 66, rank: 57 },
+      { name: "100 Thieves", tier: 2, strength: 69, rank: 50 },
+      { name: "Luminosity", tier: 2, strength: 67, rank: 55 },
+      { name: "SK Gaming", tier: 2, strength: 66, rank: 56 },
+      { name: "Team One", tier: 3, strength: 58, rank: 89, circuit: "regional" },
+      { name: "Boom Esports", tier: 3, strength: 59, rank: 87, circuit: "regional" },
+      { name: "AGO", tier: 2, strength: 70, rank: 46 },
+      { name: "Pact", tier: 2, strength: 67, rank: 54 },
+      { name: "Betera", tier: 2, strength: 68, rank: 53 },
+      { name: "Eternal Fire Academy", tier: 3, strength: 57, rank: 90, circuit: "academy" },
+      { name: "Sangal Academy", tier: 3, strength: 55, rank: 94, circuit: "academy" },
     ];
 
     // País(es) de cada org — times iniciais seguem a nacionalidade
@@ -4926,7 +5059,20 @@ function toggleLanguage() {
       "s1mple","b1t","jL","Aleksib","iM","ZywOo","apEX","flameZ","mezii","ropz",
       "donk","sh1ro","magixx","zont1x","chopper","m0NESY","NiKo","huNter-","Snax","malbsMd",
       "device","stavn","jabbi","HooXi","br0","frozen","rain","karrigan","broky","Twistzz",
-      "Spinx","torzsi","xertioN","Jimpphat","Brollan","XANTARES","woxic","MAJ3R","Calyx","Wicadia"
+      "Spinx","torzsi","xertioN","Jimpphat","Brollan","XANTARES","woxic","MAJ3R","Calyx","Wicadia",
+      "w0nderful","kyousuke","TeSeS","dupreeh","HeavyGod","MATYS","sjuush","NertZ","degster","kyxsan",
+      "tabseN","syrsoN","JDC","Krimbo","hyped","EliGE","floppy","hallzerk","JT","Grim",
+      "bLitz","Techno4K","910","mzinho","Senzu","electroNic","Jame","FL1T","fame","ICY",
+      "Boombl4","zorte","s1ren","Magnojez","Ax1Le","Perfecto","npl","alex666","headtr1ck","c3ntury",
+      "noway","decenty","try","skullz","n1ssim","kauez","nqz","exit","brnz4n","insani",
+      "latto","dumau","NEKIZ","b4rtiN","coldzera","Lucaozy","max","dgt","buda","HUASO",
+      "NAF","ultimate","YEKINDAR","blameF","KRIMZ","nawwk","bodyy","REZ","isak","r1nkle",
+      "maxster","sdy","podi","Aerial","jottAAA","n0rb3r7","interz","nafany","Hades","siuhy",
+      "jks","dexter","INS","Liazz","Vexite","BnTeT","somebody","Summer","advent","zhoki",
+      "jL","iM","Aleksib","b1t","w0nderful","donk","sh1ro","zont1x","magixx","chopper",
+      "ZywOo","flameZ","mezii","ropz","apEX","m0NESY","NiKo","huNter-","malbsMd","Snax",
+      "KSCERATO","yuurih","FalleN","chelo","arT","VINI","drop","saffee","biguzera","snow",
+      "s1mple","electronic","Perfecto","Boombl4","b1t","device","gla1ve","Xyp9x","Magisk","dupreeh"
     ];
 
     // Rosters aproximados por time (você entra no lugar de 1 slot)
@@ -4959,6 +5105,67 @@ function toggleLanguage() {
       "BetBoom": ["Boombl4","zorte","s1ren","Magnojez","d1Ledez"],
       "Cloud9": ["Ax1Le","Perfecto","Boombl4","interz","nafany"],
       "B8": ["npl","alex666","headtr1ck","c3ntury","n0rb3r7"],
+      "OG": ["F1KU","k1to","nicoodoz","FASHR","nexa"],
+      "NRG": ["oSee","Brehze","HexT","autimatic","nitr0"],
+      "M80": ["Swisher","slaxz-","malbsMd","reck","Lake"],
+      "Wildcard": ["stanislaw","Sonic","Suskie","fr3nd","JBa"],
+      "Lynn Vision": ["westmelon","z4kr","Starry","EmiliaQAQ","Jee"],
+      "TYLOO": ["somebody","Attacker","Summer","JamYoung","Mercury"],
+      "Rare Atom": ["ChildKing","kaze","Summer","advent","zhoki"],
+      "The MongolZ": ["bLitz","Techno4K","910","mzinho","Senzu"],
+      "Eternal Fire": ["XANTARES","woxic","MAJ3R","Wicadia","Calyx"],
+      "3DMAX": ["bodyy","Maka","Ex3rcice","Lucky","Djoko"],
+      "SAW": ["MUTiRiS","story","roman","ewjerkje","aragorn"],
+      "FlyQuest": ["jks","dexter","INS","Liazz","Vexite"],
+      "GamerLegion": ["isak","volta","tauson","PR","aNdu"],
+      "Passion UA": ["fear","jackasmo","jambo","s4ltovsk1yy","dem0n"],
+      "PARIVISION": ["Jame","FL1T","fame","BELCHONOKK","xiELO"],
+      "BetBoom": ["Boombl4","zorte","s1ren","Magnojez","d1Ledez"],
+      "Virtus.pro": ["electroNic","FL1T","fame","ICY","ICY"],
+      "Liquid": ["NAF","Twistzz","ultimate","jimpphat","YEKINDAR"],
+      "Cloud9": ["Ax1Le","Perfecto","interz","nafany","Hobbit"],
+      "fnatic": ["blameF","KRIMZ","nawwk","bodyy","cyber"],
+      "ENCE": ["sdy","podi","glows","SlaM","Aerial"],
+      "NIP": ["REZ","isak","r1nkle","maxster","xKacpersky"],
+      "BIG": ["tabseN","syrsoN","JDC","Krimbo","hyped"],
+      "Complexity": ["EliGE","floppy","hallzerk","JT","Grim"],
+      "Heroic": ["sjuush","TeSeS","NertZ","degster","kyxsan"],
+      "Astralis": ["device","stavn","jabbi","HooXi","br0"],
+      "MOUZ": ["Spinx","torzsi","xertioN","Jimpphat","Brollan"],
+      "FaZe": ["frozen","rain","karrigan","broky","Twistzz"],
+      "G2": ["huNter-","malbsMd","Snax","HeavyGod","MATYS"],
+      "Falcons": ["m0NESY","NiKo","TeSeS","kyousuke","dupreeh"],
+      "NaVi": ["b1t","jL","Aleksib","iM","w0nderful"],
+      "Spirit": ["donk","sh1ro","magixx","zont1x","chopper"],
+      "Vitality": ["ZywOo","apEX","flameZ","mezii","ropz"],
+      "FURIA": ["KSCERATO","yuurih","arT","FalleN","chelo"],
+      "Imperial": ["VINI","noway","decenty","try","skullz"],
+      "paiN": ["biguzera","n1ssim","snow","kauez","nqz"],
+      "MIBR": ["exit","brnz4n","insani","saffee","drop"],
+      "Legacy": ["latto","dumau","NEKIZ","b4rtiN","coldzera"],
+      "Fluxo": ["Lucaozy","zqk","history","arTzin","soul"],
+      "9z": ["max","dgt","buda","HUASO","loki"],
+      "KRÜ": ["Mazino","keiz","Dav1deuS","Melser","righi"],
+      "Sharks": ["doc","rdnzao","Gafolo","gefferson","supi"],
+      "ODDIK": ["remix","vsm","to1nou","k1ng","xureba"],
+      "RED Canids": ["coldzera","HEN1","felps","JOTA","zqkS"],
+      "Apeks": ["jkaem","nawwk","CacaNito","STYKO","sense"],
+      "Monte": ["Woro2k","DemQQ","kRaSnaL","sdy","hadji"],
+      "Sashi": ["Lucky","b0RUP","refrezh","Cabbi","IceBerg"],
+      "ECSTATIC": ["kraghen","Anlelele","salazar","Patti","Queenix"],
+      "Into The Breach": ["CYPHER","Thomas","volko","s0m","rigoN"],
+      "AGO": ["Furlan","Snax","kRaSnaL","phr","Snax"],
+      "HAVU": ["xseveN","Aerial","jemi","uli","Airax"],
+      "Metizport": ["adamb","nilo","Plopski","LNZ","SHiNE"],
+      "Alliance": ["PlesseN","robiin","eraa","twist","Brollan"],
+      "KOI": ["mopoz","dav1g","Garrido","stadodo","JonY BoY"],
+      "Movistar Riders": ["mopoz","alex","dav1g","DeathZz","TorPe"],
+      "Grayhound": ["Vexite","INS","aliStair","Sico","apocdud"],
+      "Rooster": ["asap","nettik","chelleos","DannyG","Terryyy"],
+      "ORDER": ["J1rah","Hatz","Valiance","apoc","Dick"],
+      "Luminosity": ["HEN1","boltz","NEKIZ","pkMeteR","LUCAS1"],
+      "Dignitas": ["f0rest","friberg","hallzerk","HEAP","Lekr0"],
+      "100 Thieves": ["EliGE","oSee","JDC","nitr0","Grim"],
     };
 
     // Staff pessoal do JOGADOR (não do coach)
@@ -5031,7 +5238,14 @@ function toggleLanguage() {
         "Sawed-Off | Forest DDPAT", "SCAR-20 | Contractor", "G3SG1 | Desert Storm", "Negev | Army Sheen",
         "MP5-SD | Dirt Drop", "AUG | Contractor", "FAMAS | Colony", "Galil AR | Hunting Blind",
         "M249 | Contrast Spray", "XM1014 | Blue Tire", "Tec-9 | Groundwater", "Five-SeveN | Forest Night",
-        "Dual Berettas | Contractor", "P2000 | Granite Marbleized", "CZ75-Auto | Green Plaid", "R8 Revolver | Bone Mask"
+        "Dual Berettas | Contractor", "P2000 | Granite Marbleized", "CZ75-Auto | Green Plaid", "R8 Revolver | Bone Mask",
+        "MP7 | Army Recon", "P90 | Sand Spray", "Nova | Predator", "UMP-45 | Scorched",
+        "MAG-7 | Sand Dune", "Sawed-Off | Sage Spray", "PP-Bizon | Brass", "Negev | Palm",
+        "SCAR-20 | Sand Mesh", "G3SG1 | Jungle Dashed", "M249 | Jungle", "XM1014 | Grassland",
+        "Tec-9 | Army Mesh", "Five-SeveN | Contractor", "Dual Berettas | Briar", "P2000 | Grassland Leaves",
+        "Glock-18 | Sand Dune", "USP-S | Forest Leaves", "P250 | Boreal Forest", "CZ75-Auto | Jungle Dashed",
+        "AK-47 | Safari Mesh", "M4A4 | Tornado", "AWP | Safari Mesh", "AUG | Storm",
+        "FAMAS | Colony", "Galil AR | Sage Spray", "SG 553 | Waves Perforated", "SSG 08 | Blue Spruce"
       ],
       industrial: [
         "Glock-18 | Groundwater", "M4A4 | Urban DDPAT", "AK-47 | Elite Build", "AWP | Safari Mesh",
@@ -5039,7 +5253,15 @@ function toggleLanguage() {
         "MAC-10 | Silver", "MP9 | Orange Peel", "UMP-45 | Indigo", "Nova | Walnut",
         "XM1014 | Blue Spruce", "MAG-7 | Storm", "Sawed-Off | Snake Camo", "PP-Bizon | Urban Dashed",
         "Negev | CaliCamo", "M249 | Gator Mesh", "SCAR-20 | Sand Mesh", "G3SG1 | Safari Mesh",
-        "Tec-9 | Urban DDPAT", "Five-SeveN | Orange Peel", "Dual Berettas | Colony", "P2000 | Grassland"
+        "Tec-9 | Urban DDPAT", "Five-SeveN | Orange Peel", "Dual Berettas | Colony", "P2000 | Grassland",
+        "AK-47 | Jungle Spray", "M4A1-S | Boreal Forest", "AWP | Pit Viper", "Desert Eagle | Mudder",
+        "USP-S | Night Ops", "Glock-18 | Night", "P250 | Facets", "MAC-10 | Tornado",
+        "MP7 | Groundwater", "MP9 | Dry Season", "UMP-45 | Caramel", "P90 | Teardown",
+        "Nova | Modern Hunter", "XM1014 | Blue Steel", "MAG-7 | Hazard", "Sawed-Off | Copper",
+        "PP-Bizon | Cobalt Halftone", "Negev | Terrain", "SCAR-20 | Carbon Fiber", "G3SG1 | Arctic Camo",
+        "Tec-9 | Blue Titanium", "Five-SeveN | Anodized Gunmetal", "CZ75-Auto | Crimson Web", "R8 Revolver | Bone Mask",
+        "AUG | Condemned", "FAMAS | Cyanospatter", "Galil AR | VariCamo", "SG 553 | Damascus DDPAT",
+        "SSG 08 | Tropical Storm", "M4A4 | Faded Zebra", "AK-47 | Black Laminate", "AWP | Pink DDPAT"
       ],
       milspec: [
         "AK-47 | Blue Laminate", "M4A1-S | Nitro", "AWP | Acheron", "Glock-18 | Ironwork",
@@ -5048,7 +5270,17 @@ function toggleLanguage() {
         "USP-S | Lead Conduit", "Glock-18 | Off World", "FAMAS | Mecha Industries", "Galil AR | Rocket Pop",
         "P90 | Module", "UMP-45 | Briefing", "MP7 | Armor Core", "Nova | Exo",
         "MAG-7 | Heat", "Sawed-Off | Origami", "Five-SeveN | Retrobution", "Tec-9 | Re-Entry",
-        "CZ75-Auto | Pole Position", "Dual Berettas | Dualing Dragons", "P2000 | Imperial", "R8 Revolver | Grip"
+        "CZ75-Auto | Pole Position", "Dual Berettas | Dualing Dragons", "P2000 | Imperial", "R8 Revolver | Grip",
+        "AK-47 | Steel Delta", "M4A4 | Spider Lily", "AWP | Capillary", "Desert Eagle | Oxide Blaze",
+        "USP-S | Check Engine", "Glock-18 | Moonrise", "P250 | Nevermore", "MAC-10 | Calf Skin",
+        "MP9 | Modest Threat", "MP7 | Powercore", "UMP-45 | Momentum", "P90 | Traction",
+        "Nova | Wild Six", "XM1014 | Black Tie", "MAG-7 | Cobalt Core", "Sawed-Off | Limelight",
+        "PP-Bizon | Judgement of Anubis", "Negev | Dazzle", "SCAR-20 | Outbreak", "G3SG1 | Flux",
+        "Tec-9 | Avalanche", "Five-SeveN | Triumvirate", "CZ75-Auto | Imprint", "R8 Revolver | Llama Cannon",
+        "AUG | Tom Cat", "FAMAS | Meow 36", "Galil AR | Connexion", "SG 553 | Darkwing",
+        "SSG 08 | Ghost Crusader", "M4A1-S | Leaded Glass", "AK-47 | Rat Rod", "AWP | Atheris",
+        "Glock-18 | Vogue", "USP-S | Flashback", "Desert Eagle | Light Rail", "P250 | Visions",
+        "MAC-10 | Button Masher", "MP5-SD | Condition Zero", "UMP-45 | Plastique", "P90 | Freight"
       ],
       restricted: [
         "AK-47 | Redline", "M4A4 | Desolate Space", "AWP | Worm God", "Glock-18 | Water Elemental",
@@ -5056,28 +5288,89 @@ function toggleLanguage() {
         "AK-47 | Orbit Mk01", "AWP | PAW", "Glock-18 | Moonrise", "USP-S | Cyrex",
         "Desert Eagle | Directive", "FAMAS | Djinn", "Galil AR | Eco", "P250 | Cartel",
         "MAC-10 | Neon Rider", "MP9 | Hypnotic", "UMP-45 | Primal Saber", "Nova | Hyper Beast",
-        "Five-SeveN | Monkey Business", "Tec-9 | Fuel Injector", "CZ75-Auto | Xiangliu", "Dual Berettas | Melondrama"
+        "Five-SeveN | Monkey Business", "Tec-9 | Fuel Injector", "CZ75-Auto | Xiangliu", "Dual Berettas | Melondrama",
+        "AK-47 | Frontside Misty", "M4A4 | 龍王 (Dragon King)", "AWP | Mortis", "Desert Eagle | Kumicho Dragon",
+        "USP-S | Orion", "Glock-18 | Wasteland Rebel", "P250 | Asiimov", "MAC-10 | Disco Tech",
+        "MP7 | Nemesis", "MP9 | Starlight Protector", "UMP-45 | Arctic Wolf", "P90 | Blind Spot",
+        "Nova | Antique", "XM1014 | Tranquility", "MAG-7 | Petroglyph", "Sawed-Off | The Kraken",
+        "PP-Bizon | Fuel Rod", "Negev | Power Loader", "SCAR-20 | Cardiac", "G3SG1 | The Executioner",
+        "Tec-9 | Titanium Bit", "Five-SeveN | Case Hardened", "CZ75-Auto | The Fuschia Is Now", "R8 Revolver | Fade",
+        "AUG | Chameleon", "FAMAS | Afterimage", "Galil AR | Chatterbox", "SG 553 | Pulse",
+        "SSG 08 | Dragonfire", "M4A1-S | Hyper Beast", "AK-47 | Case Hardened", "AWP | Electric Hive",
+        "Glock-18 | Twilight Galaxy", "USP-S | Kill Confirmed", "Desert Eagle | Golden Koi", "P250 | Muertos",
+        "MAC-10 | Heat", "MP5-SD | Phosphor", "UMP-45 | Scaffold", "P90 | Asiimov",
+        "AK-47 | Point Disarray", "M4A4 | Royal Paladin", "AWP | Graphite", "Desert Eagle | Cobalt Disruption"
       ],
       classified: [
         "AK-47 | Vulcan", "M4A1-S | Printstream", "AWP | Asiimov", "Desert Eagle | Printstream",
         "USP-S | Kill Confirmed", "Glock-18 | Fade", "AK-47 | Bloodsport", "M4A4 | Neo-Noir",
         "AWP | Containment Breach", "Desert Eagle | Code Red", "USP-S | Neo-Noir", "Glock-18 | Wasteland Rebel",
         "M4A1-S | Player Two", "AK-47 | Phantom Disruptor", "AWP | Neo-Noir", "P250 | See Ya Later",
-        "MAC-10 | Disco Tech", "MP7 | Nemesis", "Five-SeveN | Angry Mob", "Tec-9 | Decimator"
+        "MAC-10 | Disco Tech", "MP7 | Nemesis", "Five-SeveN | Angry Mob", "Tec-9 | Decimator",
+        "AK-47 | Neon Revolution", "M4A4 | The Emperor", "AWP | Oni Taiji", "Desert Eagle | Cobalt Disruption",
+        "USP-S | Caiman", "Glock-18 | Water Elemental", "P250 | Undertow", "MAC-10 | Neon Rider",
+        "MP9 | Hydra", "UMP-45 | Blaze", "P90 | Emerald Dragon", "Nova | Bloomstick",
+        "XM1014 | Heaven Guard", "MAG-7 | Justice", "Sawed-Off | The Kraken", "PP-Bizon | High Roller",
+        "SCAR-20 | Bloodsport", "G3SG1 | Chronos", "Five-SeveN | Hyper Beast", "CZ75-Auto | Yellow Jacket",
+        "AUG | Akihabara Accept", "FAMAS | Spitfire", "Galil AR | Sugar Rush", "SG 553 | Integrale",
+        "SSG 08 | Blood in the Water", "M4A1-S | Chantico's Fire", "AK-47 | The Empress", "AWP | Man-o'-war",
+        "Glock-18 | Bullet Queen", "USP-S | Monster Mashup", "Desert Eagle | Ocean Drive", "P250 | See Ya Later",
+        "AK-47 | Asiimov", "M4A4 | Howl", "AWP | Hyper Beast", "Desert Eagle | Conspiracy",
+        "M4A1-S | Cyrex", "AK-47 | Aquamarine Revenge", "AWP | Redline", "USP-S | Road Rash"
       ],
       covert: [
         "AK-47 | Fire Serpent", "M4A4 | Howl", "AWP | Hyper Beast", "Desert Eagle | Blaze",
         "AK-47 | Wild Lotus", "AWP | Dragon Lore", "M4A1-S | Welcome to the Jungle", "AK-47 | Gold Arabesque",
         "AWP | Gungnir", "M4A4 | Poseidon", "AK-47 | Hydroponic", "Desert Eagle | Golden Koi",
-        "AWP | Medusa", "AK-47 | Jet Set", "M4A1-S | Imminent Danger", "Glock-18 | Twilight Galaxy"
+        "AWP | Medusa", "AK-47 | Jet Set", "M4A1-S | Imminent Danger", "Glock-18 | Twilight Galaxy",
+        "AK-47 | Vulcan", "M4A1-S | Printstream", "AWP | Asiimov", "Desert Eagle | Printstream",
+        "AK-47 | Bloodsport", "M4A4 | Neo-Noir", "AWP | Containment Breach", "M4A1-S | Mecha Industries",
+        "AK-47 | Neon Rider", "M4A4 | The Emperor", "AWP | Oni Taiji", "Desert Eagle | Code Red",
+        "AK-47 | The Empress", "M4A1-S | Chantico's Fire", "AWP | Man-o'-war", "Glock-18 | Fade",
+        "AK-47 | Inheritance", "M4A1-S | Black Lotus", "AWP | Chrome Cannon", "USP-S | Printstream",
+        "AK-47 | Head Shot", "M4A4 | Temukau", "AWP | Duality", "Desert Eagle | Ocean Drive",
+        "AK-47 | Nightwish", "M4A1-S | Player Two", "AWP | Chromatic Aberration", "Glock-18 | Neo-Noir",
+        "AK-47 | Legion of Anubis", "M4A4 | In Living Color", "AWP | Fever Dream", "USP-S | The Traitor",
+        "AK-47 | Case Hardened", "M4A1-S | Knight", "AWP | Graphite", "Desert Eagle | Blaze",
+        "AK-47 | Red Laminate", "M4A4 | Radiation Hazard", "AWP | BOOM", "Glock-18 | Fade"
       ],
       gold: [
-        "★ Karambit | Fade", "★ Butterfly Knife | Doppler", "★ Bayonet | Lore",
-        "★ Talon Knife | Tiger Tooth", "★ Sport Gloves | Pandora's Box", "★ M9 Bayonet | Crimson Web",
-        "★ Karambit | Doppler", "★ Butterfly Knife | Fade", "★ Huntsman Knife | Slaughter",
-        "★ Skeleton Knife | Case Hardened", "★ Nomad Knife | Blue Steel", "★ Classic Knife | Safari Mesh",
-        "★ Specialist Gloves | Crimson Kimono", "★ Driver Gloves | King Snake", "★ Hand Wraps | Cobalt Skulls",
-        "★ Sport Gloves | Superconductor", "★ Hydra Gloves | Emerald", "★ Broken Fang Gloves | Jade"
+        "★ Karambit | Fade", "★ Karambit | Doppler", "★ Karambit | Marble Fade", "★ Karambit | Tiger Tooth",
+        "★ Karambit | Lore", "★ Karambit | Crimson Web", "★ Karambit | Case Hardened", "★ Karambit | Slaughter",
+        "★ Butterfly Knife | Fade", "★ Butterfly Knife | Doppler", "★ Butterfly Knife | Marble Fade", "★ Butterfly Knife | Tiger Tooth",
+        "★ Butterfly Knife | Lore", "★ Butterfly Knife | Crimson Web", "★ Butterfly Knife | Slaughter", "★ Butterfly Knife | Blue Steel",
+        "★ M9 Bayonet | Fade", "★ M9 Bayonet | Doppler", "★ M9 Bayonet | Marble Fade", "★ M9 Bayonet | Lore",
+        "★ M9 Bayonet | Crimson Web", "★ M9 Bayonet | Tiger Tooth", "★ M9 Bayonet | Slaughter", "★ M9 Bayonet | Case Hardened",
+        "★ Bayonet | Fade", "★ Bayonet | Doppler", "★ Bayonet | Lore", "★ Bayonet | Tiger Tooth",
+        "★ Bayonet | Crimson Web", "★ Bayonet | Slaughter", "★ Bayonet | Marble Fade", "★ Bayonet | Blue Steel",
+        "★ Talon Knife | Fade", "★ Talon Knife | Doppler", "★ Talon Knife | Tiger Tooth", "★ Talon Knife | Marble Fade",
+        "★ Talon Knife | Lore", "★ Talon Knife | Crimson Web", "★ Talon Knife | Slaughter", "★ Talon Knife | Case Hardened",
+        "★ Skeleton Knife | Fade", "★ Skeleton Knife | Doppler", "★ Skeleton Knife | Case Hardened", "★ Skeleton Knife | Slaughter",
+        "★ Skeleton Knife | Crimson Web", "★ Skeleton Knife | Blue Steel", "★ Skeleton Knife | Tiger Tooth", "★ Skeleton Knife | Lore",
+        "★ Nomad Knife | Fade", "★ Nomad Knife | Doppler", "★ Nomad Knife | Blue Steel", "★ Nomad Knife | Slaughter",
+        "★ Nomad Knife | Crimson Web", "★ Nomad Knife | Case Hardened", "★ Nomad Knife | Tiger Tooth", "★ Nomad Knife | Lore",
+        "★ Huntsman Knife | Fade", "★ Huntsman Knife | Doppler", "★ Huntsman Knife | Slaughter", "★ Huntsman Knife | Case Hardened",
+        "★ Huntsman Knife | Crimson Web", "★ Huntsman Knife | Tiger Tooth", "★ Huntsman Knife | Marble Fade", "★ Huntsman Knife | Lore",
+        "★ Classic Knife | Fade", "★ Classic Knife | Doppler", "★ Classic Knife | Slaughter", "★ Classic Knife | Blue Steel",
+        "★ Classic Knife | Crimson Web", "★ Classic Knife | Case Hardened", "★ Classic Knife | Safari Mesh", "★ Classic Knife | Lore",
+        "★ Paracord Knife | Fade", "★ Paracord Knife | Doppler", "★ Paracord Knife | Slaughter", "★ Paracord Knife | Case Hardened",
+        "★ Survival Knife | Fade", "★ Survival Knife | Doppler", "★ Survival Knife | Slaughter", "★ Survival Knife | Crimson Web",
+        "★ Ursus Knife | Fade", "★ Ursus Knife | Doppler", "★ Ursus Knife | Tiger Tooth", "★ Ursus Knife | Marble Fade",
+        "★ Stiletto Knife | Fade", "★ Stiletto Knife | Doppler", "★ Stiletto Knife | Slaughter", "★ Stiletto Knife | Crimson Web",
+        "★ Navaja Knife | Fade", "★ Navaja Knife | Doppler", "★ Navaja Knife | Slaughter", "★ Navaja Knife | Case Hardened",
+        "★ Sport Gloves | Pandora's Box", "★ Sport Gloves | Superconductor", "★ Sport Gloves | Hedge Maze", "★ Sport Gloves | Vice",
+        "★ Sport Gloves | Omega", "★ Sport Gloves | Amphibious", "★ Sport Gloves | Bronze Morph", "★ Sport Gloves | Nocts",
+        "★ Specialist Gloves | Crimson Kimono", "★ Specialist Gloves | Emerald Web", "★ Specialist Gloves | Foundation", "★ Specialist Gloves | Fade",
+        "★ Specialist Gloves | Tiger Strike", "★ Specialist Gloves | Marble Fade", "★ Specialist Gloves | Lt. Commander", "★ Specialist Gloves | Buckshot",
+        "★ Driver Gloves | King Snake", "★ Driver Gloves | Crimson Weave", "★ Driver Gloves | Lunar Weave", "★ Driver Gloves | Diamondback",
+        "★ Driver Gloves | Imperial Plaid", "★ Driver Gloves | Racing Green", "★ Driver Gloves | Overtake", "★ Driver Gloves | Snow Leopard",
+        "★ Hand Wraps | Cobalt Skulls", "★ Hand Wraps | Leather", "★ Hand Wraps | Slaughter", "★ Hand Wraps | Badlands",
+        "★ Hand Wraps | Overprint", "★ Hand Wraps | Duct Tape", "★ Hand Wraps | CAUTION!", "★ Hand Wraps | Giraffe",
+        "★ Hydra Gloves | Emerald", "★ Hydra Gloves | Case Hardened", "★ Hydra Gloves | Rattler", "★ Hydra Gloves | Mangrove",
+        "★ Broken Fang Gloves | Jade", "★ Broken Fang Gloves | Yellow-banded", "★ Broken Fang Gloves | Unhinged", "★ Broken Fang Gloves | Needle Point",
+        "★ Moto Gloves | Spearmint", "★ Moto Gloves | Cool Mint", "★ Moto Gloves | Boom!", "★ Moto Gloves | Eclipse",
+        "★ Moto Gloves | Blood Pressure", "★ Moto Gloves | 3rd Commando Company", "★ Moto Gloves | Polygon", "★ Moto Gloves | Transport",
+        "★ Bloodhound Gloves | Charred", "★ Bloodhound Gloves | Snakebite", "★ Bloodhound Gloves | Bronzed", "★ Bloodhound Gloves | Guerrilla"
       ]
     };
 
@@ -5224,11 +5517,26 @@ function toggleLanguage() {
 
     function getCaseSkinPool(caseObj, rarity) {
       if (caseObj && caseObj.sticker) {
-        const stickers = ["Sticker | Superstar", "Sticker | Clutch King", "Sticker | Bling", "Sticker | Team Gold", "Sticker | Holo Major", "Sticker | Foil Autograph"];
+        const stickers = [
+          "Sticker | Superstar", "Sticker | Clutch King", "Sticker | Bling", "Sticker | Team Gold",
+          "Sticker | Holo Major", "Sticker | Foil Autograph", "Sticker | Gold Katowice", "Sticker | Holo Cologne",
+          "Sticker | Natus Vincere (Holo)", "Sticker | FURIA (Gold)", "Sticker | Vitality (Foil)", "Sticker | G2 (Holo)",
+          "Sticker | s1mple Autograph", "Sticker | ZywOo Autograph", "Sticker | NiKo Autograph", "Sticker | donk Autograph",
+          "Sticker | FalleN (Gold)", "Sticker | KSCERATO (Holo)", "Sticker | m0NESY (Foil)", "Sticker | ropz (Gold)",
+          "Sticker | Entry Fragger", "Sticker | AWP God", "Sticker | Eco Round", "Sticker | Ace",
+          "Sticker | Bomb Defused", "Sticker | Clutch or Kick", "Sticker | Rush B", "Sticker | Save Weapons"
+        ];
         return stickers;
       }
       if (caseObj && caseObj.music) {
-        return ["Music Kit | Crimson Assault", "Music Kit | Desert Fire", "Music Kit | Hotline Miami", "Music Kit | The Talos Principle", "Music Kit | IsoRhythm"];
+        return [
+          "Music Kit | Crimson Assault", "Music Kit | Desert Fire", "Music Kit | Hotline Miami",
+          "Music Kit | The Talos Principle", "Music Kit | IsoRhythm", "Music Kit | monomen",
+          "Music Kit | Austin Wintory, Mocha Octave", "Music Kit | Daniel Sadowski, Total Domination",
+          "Music Kit | Feed Me, High Noon", "Music Kit | Leno, All for Dust", "Music Kit | Mateo Messina, For No Mankind",
+          "Music Kit | Michael Bross, Java Havana Function", "Music Kit | Sasha, LNOE", "Music Kit | Skog, Metal",
+          "Music Kit | Damjan Mravunac, The Talos Principle", "Music Kit | Various Artists, Anubis"
+        ];
       }
       const local = caseObj && caseObj.pool && CS2_CASE_POOLS[caseObj.pool];
       if (local && local[rarity] && local[rarity].length) return local[rarity];
@@ -5291,7 +5599,123 @@ function toggleLanguage() {
       if (!state.inventory.cases) state.inventory.cases = {};
       if (state.inventory.keys == null) state.inventory.keys = 0;
       if (!state.inventory.items) state.inventory.items = [];
+      if (!state.equipped) state.equipped = { skin: null, knife: null, gloves: null, stickers: [], music: null };
+      if (!state.equipped.stickers) state.equipped.stickers = [];
     }
+
+    function classifyInvItem(it) {
+      if (!it) return "skin";
+      if (it.kind) return it.kind;
+      const n = String(it.name || "");
+      if (n.indexOf("Sticker |") === 0 || n.indexOf("Sticker") === 0) return "sticker";
+      if (n.indexOf("Music Kit") === 0) return "music";
+      if (n.indexOf("★") === 0 && /Gloves|Wraps/i.test(n)) return "gloves";
+      if (n.indexOf("★") === 0 || /Knife|Bayonet|Karambit|Butterfly|Talon|Skeleton|Nomad|Huntsman|Classic|Paracord|Survival|Ursus|Stiletto|Navaja/i.test(n)) return "knife";
+      return "skin";
+    }
+
+    function equipBoostFromItem(it) {
+      if (!it) return { win: 0, form: 0, fans: 0, energy: 0, morale: 0, train: 0 };
+      const r = it.rarity || "milspec";
+      const kind = classifyInvItem(it);
+      const table = {
+        consumer:   { win: 0.002, form: 0, fans: 2, energy: 0, morale: 0, train: 0 },
+        industrial: { win: 0.004, form: 0, fans: 4, energy: 0, morale: 0, train: 0 },
+        milspec:    { win: 0.008, form: 0.01, fans: 8, energy: 0, morale: 0, train: 0 },
+        restricted: { win: 0.012, form: 0.02, fans: 15, energy: 1, morale: 1, train: 0 },
+        classified: { win: 0.018, form: 0.03, fans: 30, energy: 2, morale: 2, train: 0 },
+        covert:     { win: 0.025, form: 0.04, fans: 50, energy: 3, morale: 3, train: 0 },
+        gold:       { win: 0.030, form: 0.05, fans: 80, energy: 4, morale: 4, train: 1 }
+      };
+      const b = Object.assign({}, table[r] || table.milspec);
+      if (kind === "knife") { b.win *= 1.15; b.fans = Math.floor(b.fans * 1.3); }
+      if (kind === "gloves") { b.form *= 1.2; b.morale += 1; }
+      if (kind === "music") { b.win = 0.006; b.energy = 5; b.form = 0.03; b.fans = 10; b.morale = 2; }
+      if (kind === "sticker") { b.win = 0.003; b.fans = 20; b.morale = 2; b.form = 0.01; }
+      if (it.stattrak) { b.win *= 1.1; b.fans = Math.floor(b.fans * 1.2); }
+      return b;
+    }
+
+    function getEquippedBoosts() {
+      ensureInventory();
+      const eq = state.equipped || {};
+      const parts = [eq.skin, eq.knife, eq.gloves, eq.music].concat(eq.stickers || []);
+      const total = { win: 0, form: 0, fans: 0, energy: 0, morale: 0, train: 0 };
+      parts.forEach(function(it) {
+        if (!it) return;
+        const b = equipBoostFromItem(it);
+        total.win += b.win;
+        total.form += b.form;
+        total.fans += b.fans;
+        total.energy += b.energy;
+        total.morale += b.morale;
+        total.train += b.train;
+      });
+      // caps
+      total.win = Math.min(0.08, total.win);
+      total.form = Math.min(0.12, total.form);
+      return total;
+    }
+
+    window.equipInventoryItem = function(idx) {
+      ensureInventory();
+      const it = state.inventory.items[idx];
+      if (!it) return;
+      const kind = classifyInvItem(it);
+      it.kind = kind;
+      if (kind === "sticker") {
+        if (!state.equipped.stickers) state.equipped.stickers = [];
+        if (state.equipped.stickers.length >= 5) {
+          alert("Máximo 5 stickers equipados. Desequipe um primeiro.");
+          return;
+        }
+        // remove from inv and push
+        state.inventory.items.splice(idx, 1);
+        state.equipped.stickers.push(it);
+        addLog("🏷️ Sticker equipado: " + it.name);
+      } else if (kind === "music") {
+        if (state.equipped.music) state.inventory.items.push(state.equipped.music);
+        state.inventory.items.splice(idx, 1);
+        state.equipped.music = it;
+        addLog("🎵 Music Kit equipado: " + it.name);
+      } else if (kind === "knife") {
+        if (state.equipped.knife) state.inventory.items.push(state.equipped.knife);
+        state.inventory.items.splice(idx, 1);
+        state.equipped.knife = it;
+        addLog("🔪 Faca equipada: " + it.name);
+      } else if (kind === "gloves") {
+        if (state.equipped.gloves) state.inventory.items.push(state.equipped.gloves);
+        state.inventory.items.splice(idx, 1);
+        state.equipped.gloves = it;
+        addLog("🧤 Luvas equipadas: " + it.name);
+      } else {
+        if (state.equipped.skin) state.inventory.items.push(state.equipped.skin);
+        state.inventory.items.splice(idx, 1);
+        state.equipped.skin = it;
+        addLog("🔫 Skin equipada: " + it.name);
+      }
+      try { saveGame(true); } catch (e) {}
+      showExtra("inventory");
+      updateCareerUI();
+    };
+
+    window.unequipSlot = function(slot, stickerIdx) {
+      ensureInventory();
+      if (slot === "sticker") {
+        const it = (state.equipped.stickers || [])[stickerIdx];
+        if (!it) return;
+        state.equipped.stickers.splice(stickerIdx, 1);
+        state.inventory.items.push(it);
+        addLog("Desequipou sticker: " + it.name);
+      } else if (state.equipped[slot]) {
+        state.inventory.items.push(state.equipped[slot]);
+        addLog("Desequipou: " + state.equipped[slot].name);
+        state.equipped[slot] = null;
+      }
+      try { saveGame(true); } catch (e) {}
+      showExtra("inventory");
+      updateCareerUI();
+    };
 
     function rollCaseRarity(isSouvenir) {
       // pesos aproximados do CS (gold ~0.26%)
@@ -5894,48 +6318,41 @@ function toggleLanguage() {
 
 
     // ===== Patch notes (aparece ao abrir) =====
-    const PATCH_VERSION = "7.1";
+    const PATCH_VERSION = "7.4";
     const PATCH_NOTES = {
       pt: {
         title: "📋 Patch notes",
         ok: "OK — Jogar",
         body: `
-          <p style="margin:0 0 12px;color:var(--muted);font-size:0.8rem;">Fenômeno CS2 · <strong style="color:var(--accent2)">v7.1</strong></p>
+          <p style="margin:0 0 12px;color:var(--muted);font-size:0.8rem;">Fenômeno CS2 · <strong style="color:var(--accent2)">v7.4</strong></p>
 
           <div style="padding:10px;margin-bottom:10px;background:rgba(240,193,75,0.12);border:1px solid rgba(240,193,75,0.4);border-radius:12px;">
-            <strong style="color:var(--gold);">📦 v7.1 — Caixas & loja</strong>
+            <strong style="color:var(--gold);">🎒 v7.4 — Inventário com loadout</strong>
             <ul style="margin:8px 0 0;padding-left:18px;font-size:0.82rem;line-height:1.45;">
-              <li><strong>30+ caixas</strong> estilo CS2 (Chroma, Kilowatt, Revolution, Souvenir…)</li>
-              <li>Skins por raridade e por caixa · facas/luvas gold</li>
-              <li>Loja com <strong>400+ itens</strong> (periféricos, viagem, treino, investimentos…)</li>
+              <li>Abas: <strong>Equipado · Skins · Stickers · Music · Caixas</strong></li>
+              <li>Equipar skin, faca, luvas, music kit e até 5 stickers</li>
+              <li><strong>Boosts</strong> por raridade: win %, forma, fãs, energia, moral</li>
+              <li>100+ times e jogadores reais (rosters atualizados)</li>
             </ul>
           </div>
 
           <div style="padding:10px;margin-bottom:10px;background:rgba(0,231,1,0.1);border:1px solid rgba(0,231,1,0.35);border-radius:12px;">
-            <strong style="color:var(--accent2);">📞 v7.0 — Agente (estilo FIFA)</strong>
+            <strong style="color:var(--accent2);">📦 v7.1–7.3 — Caixas & skins</strong>
             <ul style="margin:8px 0 0;padding-left:18px;font-size:0.82rem;line-height:1.45;">
-              <li>Hub → <strong>Pedir transferência</strong>: agente liga pros clubes</li>
-              <li>Listar no mercado · taxa · buyout · comissão</li>
+              <li>30+ caixas estilo CS2 com pool por raridade</li>
+              <li>150+ facas/luvas gold · stickers · music kits</li>
+              <li>Loja com 400+ itens</li>
             </ul>
           </div>
 
           <div style="padding:10px;margin-bottom:10px;background:rgba(79,140,255,0.12);border:1px solid rgba(79,140,255,0.35);border-radius:12px;">
-            <strong style="color:#7eb0ff;">⚖️ v6.9 — Balance de campeonatos</strong>
-            <p style="margin:6px 0 0;font-size:0.82rem;">Séries vs iguais ~50%. Título de Major raro, mas possível. Favorito ganha mais — sem farm fácil.</p>
+            <strong style="color:#7eb0ff;">📞 v7.0 — Agente · 📴 v7.2 Offline</strong>
+            <p style="margin:6px 0 0;font-size:0.82rem;">Transferência estilo FIFA · save duplo + IndexedDB · SW cache · autosave.</p>
           </div>
 
           <div style="padding:10px;margin-bottom:10px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:12px;">
-            <strong style="color:#c084fc;">🏅 v6.6 — HLTV Awards</strong>
-            <p style="margin:6px 0 0;font-size:0.82rem;">Cerimônia em dez/jan · Player / Team / Rookie · Panel Awards por role · finalistas top 3.</p>
-          </div>
-
-          <div style="padding:10px;margin-bottom:10px;background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.25);border-radius:12px;">
-            <strong style="color:#f85149;">🔧 Correções recentes</strong>
-            <ul style="margin:8px 0 0;padding-left:18px;font-size:0.82rem;line-height:1.45;">
-              <li>Convites de camp (Vitality / tier 1 quase todo mês)</li>
-              <li>Entrevistas pós-jogo com 100+ falas</li>
-              <li>Modo offline (carreira após 1ª visita)</li>
-            </ul>
+            <strong style="color:#c084fc;">⚖️ Balance · 🏅 HLTV Awards</strong>
+            <p style="margin:6px 0 0;font-size:0.82rem;">Séries realistas · cerimônia HLTV Awards no fim de ano.</p>
           </div>
 
           <p style="margin:12px 0 0;font-size:0.75rem;color:var(--muted);">Bug ou ideia? Aba Feedback · fenomeno.do.cs2@gmail.com</p>
@@ -5945,32 +6362,28 @@ function toggleLanguage() {
         title: "📋 Patch notes",
         ok: "OK — Play",
         body: `
-          <p style="margin:0 0 12px;color:var(--muted);font-size:0.8rem;">Phenomenon CS2 · <strong style="color:var(--accent2)">v7.1</strong></p>
+          <p style="margin:0 0 12px;color:var(--muted);font-size:0.8rem;">Phenomenon CS2 · <strong style="color:var(--accent2)">v7.4</strong></p>
           <div style="padding:10px;margin-bottom:10px;background:rgba(240,193,75,0.12);border:1px solid rgba(240,193,75,0.4);border-radius:12px;">
-            <strong style="color:var(--gold);">📦 v7.1 — Cases & shop</strong>
-            <p style="margin:6px 0 0;font-size:0.82rem;">30+ CS2-style cases with per-case skin pools · 400+ shop items.</p>
+            <strong style="color:var(--gold);">🎒 v7.4 — Inventory loadout</strong>
+            <p style="margin:6px 0 0;font-size:0.82rem;">Equip skins, knives, gloves, stickers & music kits for real match boosts. 100+ real teams/players.</p>
           </div>
           <div style="padding:10px;margin-bottom:10px;background:rgba(0,231,1,0.1);border:1px solid rgba(0,231,1,0.35);border-radius:12px;">
-            <strong style="color:var(--accent2);">📞 v7.0 — Agent transfers</strong>
-            <p style="margin:6px 0 0;font-size:0.82rem;">FIFA-style: ask your agent to shop you to other teams · listing · buyout.</p>
+            <strong style="color:var(--accent2);">📦 Cases · 📞 Agent · 📴 Offline</strong>
+            <p style="margin:6px 0 0;font-size:0.82rem;">30+ cases, FIFA-style transfers, dual save + offline cache.</p>
           </div>
-          <div style="padding:10px;margin-bottom:10px;background:rgba(79,140,255,0.12);border:1px solid rgba(79,140,255,0.35);border-radius:12px;">
-            <strong style="color:#7eb0ff;">⚖️ v6.9 — Balance · 🏅 HLTV Awards</strong>
-            <p style="margin:6px 0 0;font-size:0.82rem;">Even matches ~50% · rare Major titles · real HLTV Awards ceremony.</p>
-          </div>
-          <p style="margin:12px 0 0;font-size:0.75rem;color:var(--muted);">Feedback tab · fenomeno.do.cs2@gmail.com</p>
+          <p style="margin:12px 0 0;font-size:0.75rem;color:var(--muted);">Feedback · fenomeno.do.cs2@gmail.com</p>
         `
       },
       es: {
         title: "📋 Patch notes",
         ok: "OK — Jugar",
         body: `
-          <p style="margin:0 0 12px;color:var(--muted);font-size:0.8rem;">Fenómeno CS2 · <strong style="color:var(--accent2)">v7.1</strong></p>
+          <p style="margin:0 0 12px;color:var(--muted);font-size:0.8rem;">Fenómeno CS2 · <strong style="color:var(--accent2)">v7.4</strong></p>
           <p style="font-size:0.85rem;line-height:1.45;">
-            <strong>v7.1</strong> — 30+ cajas CS2 y tienda 400+ ítems.<br>
-            <strong>v7.0</strong> — Agente estilo FIFA (pedir traspaso).<br>
-            <strong>v6.9</strong> — Balance de campeonatos.<br>
-            <strong>v6.6</strong> — HLTV Awards reales.
+            <strong>v7.4</strong> — Inventario con loadout (skins, stickers, music) y boosts.<br>
+            <strong>v7.3</strong> — Más skins gold / stickers.<br>
+            <strong>v7.0–7.2</strong> — Agente FIFA + offline reforzado.<br>
+            100+ equipos y jugadores reales.
           </p>
           <p style="margin:12px 0 0;font-size:0.75rem;color:var(--muted);">Feedback · fenomeno.do.cs2@gmail.com</p>
         `
@@ -11688,88 +12101,121 @@ function toggleLanguage() {
       } else if (type === "inventory") {
         ensureInventory();
         const inv = state.inventory;
+        const eq = state.equipped;
+        const boosts = getEquippedBoosts();
         const caseCount = Object.values(inv.cases).reduce((a, b) => a + b, 0);
         const totalValue = inv.items.reduce((s, it) => s + (it.value || 0), 0);
-        let html = `<p style="margin-bottom:8px;"><strong>🎒 Inventário CS2</strong>
-          <br><small style="color:var(--muted)">Saldo $${Math.floor(state.money).toLocaleString()} · Chaves ${inv.keys} · Caixas ${caseCount}</small></p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;font-size:0.8rem;">
-            <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;">
-              <div style="color:var(--muted);font-size:0.65rem">ITENS</div>
-              <strong>${inv.items.length}</strong>
-            </div>
-            <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;">
-              <div style="color:var(--muted);font-size:0.65rem">VALOR EST.</div>
-              <strong style="color:var(--gold)">$${totalValue.toLocaleString()}</strong>
-            </div>
-          </div>
-          <p style="font-weight:600;color:var(--accent2);margin-bottom:6px;">🛒 Comprar caixas / chaves</p>`;
-        CS2_CASES.forEach(c => {
-          const owned = inv.cases[c.id] || 0;
-          html += `<div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:8px;align-items:center;">
-            <div style="flex:1;font-size:0.82rem;">
-              <strong>${c.name}</strong> ${owned ? `<span style="color:var(--accent2)">×${owned}</span>` : ""}
-              <br><small style="color:var(--muted)">$${c.price}${c.keyPrice ? " + chave $" + c.keyPrice : " · sem chave"} · ${c.desc}</small>
-            </div>
-            <button class="btn btn-green" style="width:auto;padding:8px 10px;font-size:0.75rem;" onclick="buyCase('${c.id}')">Comprar</button>
-          </div>`;
-        });
-        html += `<div style="padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-          <div><strong>🔑 Chave de caixa</strong><br><small style="color:var(--muted)">$90 · necessária pra abrir (exceto Souvenir)</small></div>
-          <button class="btn btn-green" style="width:auto;padding:8px 10px;font-size:0.75rem;" onclick="buyCaseKey()">Comprar</button>
-        </div>`;
-
-        html += `<p style="font-weight:600;color:var(--gold);margin:14px 0 6px;">📦 Suas caixas</p>`;
-        const hasCases = Object.keys(inv.cases).some(k => inv.cases[k] > 0);
-        if (!hasCases) {
-          html += `<p style="color:var(--muted);font-size:0.82rem;">Nenhuma caixa. Compre acima para abrir.</p>`;
-        } else {
-          Object.keys(inv.cases).forEach(cid => {
-            if (!inv.cases[cid]) return;
-            const c = CS2_CASES.find(x => x.id === cid);
-            if (!c) return;
-            const needKey = c.keyPrice > 0;
-            html += `<div style="padding:10px;margin-bottom:8px;background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:12px;">
-              <strong>${c.name}</strong> ×${inv.cases[cid]}
-              <br><small style="color:var(--muted)">${needKey ? (inv.keys > 0 ? "Chave disponível" : "Precisa de chave ($90)") : "Abre sem chave"}</small>
-              <button class="btn btn-green" style="margin-top:8px;" onclick="openCase('${cid}')">🔓 Abrir com animação</button>
-            </div>`;
-          });
+        const tab = state._invTab || "loadout";
+        function invTabBtn(id, label) {
+          const on = tab === id;
+          return `<button class="btn ${on ? "btn-green" : "btn-secondary"}" style="width:auto;padding:6px 10px;font-size:0.72rem;margin:2px;" onclick="state._invTab='${id}';showExtra('inventory')">${label}</button>`;
         }
-
-        const last = state._lastUnbox;
-        if (last) {
-          const col = (CS2_RARITY[last.rarity] || {}).color || "#fff";
-          const cleanL = String(last.name||"").replace(/^★ StatTrak™ /,"★ ").replace(/^StatTrak™ /,"").replace(/^Souvenir /,"");
-          const imgL = typeof skinImgHtml === "function" ? skinImgHtml(cleanL, last.wear || "Field-Tested", 120) : "";
-          html += `<div style="margin:12px 0;padding:14px;border-radius:12px;border:2px solid ${col};background:rgba(0,0,0,0.35);text-align:center;">
-            <div style="font-size:0.7rem;color:var(--muted);">ÚLTIMA ABERTURA</div>
-            <div style="display:flex;justify-content:center;margin:8px 0;">${imgL}</div>
-            <div style="font-size:1.05rem;font-weight:800;color:${col};margin:6px 0;">${last.name}</div>
-            <div style="font-size:0.8rem;color:${col}">${(CS2_RARITY[last.rarity] || {}).name || last.rarity}${last.wear ? " · " + last.wear : ""}</div>
-            <div style="color:var(--gold);margin-top:4px;">~$${last.value}</div>
+        let html = `<p style="margin-bottom:6px;"><strong>🎒 Inventário CS2</strong>
+          <br><small style="color:var(--muted)">$${Math.floor(state.money).toLocaleString()} · 🔑 ${inv.keys} · 📦 ${caseCount} · itens ${inv.items.length} · ~$${totalValue.toLocaleString()}</small></p>
+          <div style="margin-bottom:10px;display:flex;flex-wrap:wrap;gap:2px;">
+            ${invTabBtn("loadout","⭐ Equipado")}
+            ${invTabBtn("skins","🔫 Skins")}
+            ${invTabBtn("stickers","🏷️ Stickers")}
+            ${invTabBtn("music","🎵 Music")}
+            ${invTabBtn("cases","📦 Caixas")}
           </div>`;
-        }
 
-        html += `<p style="font-weight:600;margin:14px 0 6px;">🎨 Skins no inventário
-          <button class="btn btn-secondary" style="width:auto;padding:4px 8px;font-size:0.68rem;margin-left:6px;" onclick="sellAllJunk()">Vender cinzas/azuis</button>
-        </p>`;
-        if (!inv.items.length) {
-          html += `<p style="color:var(--muted);font-size:0.82rem;">Vazio — abra caixas ou compre skins na loja.</p>`;
-        } else {
-          inv.items.slice().reverse().slice(0, 40).forEach((it, idx) => {
-            const realIdx = inv.items.length - 1 - idx;
+        if (tab === "loadout") {
+          html += `<div style="padding:10px;border-radius:12px;border:1px solid rgba(0,231,1,0.35);background:rgba(0,231,1,0.06);margin-bottom:10px;font-size:0.82rem;">
+            <strong style="color:var(--accent2)">Boosts equipados</strong><br>
+            Win +${(boosts.win*100).toFixed(1)}% · Forma +${(boosts.form*100).toFixed(1)}% · Fãs +${boosts.fans}/mês · Energia +${boosts.energy} · Moral +${boosts.morale}
+          </div>`;
+          function slotRow(label, it, slot, stIdx) {
+            if (!it) return `<div style="padding:8px;border:1px dashed var(--border);border-radius:10px;margin-bottom:6px;font-size:0.82rem;color:var(--muted);">${label}: vazio</div>`;
             const col = (CS2_RARITY[it.rarity] || {}).color || "#8b95a5";
-            const clean = String(it.name||"").replace(/^★ StatTrak™ /,"★ ").replace(/^StatTrak™ /,"").replace(/^Souvenir /,"");
-            const img = typeof skinImgHtml === "function" ? skinImgHtml(clean, it.wear || "Field-Tested", 48) : "";
-            html += `<div class="inv-skin-row" style="padding:8px 0;border-bottom:1px solid var(--border);justify-content:space-between;">
-              ${img}
-              <div style="flex:1;font-size:0.82rem;min-width:0;">
-                <strong style="color:${col}">${it.name}</strong>
-                <br><small style="color:var(--muted)">${(CS2_RARITY[it.rarity] || {}).name || ""}${it.wear ? " · " + it.wear : ""} · ~$${it.value}</small>
+            const uneq = slot === "sticker"
+              ? `unequipSlot('sticker',${stIdx})`
+              : `unequipSlot('${slot}')`;
+            return `<div style="padding:8px;border:1px solid ${col};border-radius:10px;margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;align-items:center;">
+              <div style="font-size:0.82rem;min-width:0;"><span style="color:var(--muted);font-size:0.68rem;">${label}</span><br><strong style="color:${col}">${it.name}</strong>
+              <br><small style="color:var(--muted)">${(CS2_RARITY[it.rarity]||{}).name||""} · boost win +${(equipBoostFromItem(it).win*100).toFixed(1)}%</small></div>
+              <button class="btn btn-secondary" style="width:auto;padding:6px 8px;font-size:0.7rem;" onclick="${uneq}">Tirar</button>
+            </div>`;
+          }
+          html += slotRow("🔫 Skin principal", eq.skin, "skin");
+          html += slotRow("🔪 Faca", eq.knife, "knife");
+          html += slotRow("🧤 Luvas", eq.gloves, "gloves");
+          html += slotRow("🎵 Music Kit", eq.music, "music");
+          (eq.stickers || []).forEach(function(st, i) {
+            html += slotRow("🏷️ Sticker " + (i+1), st, "sticker", i);
+          });
+          if (!(eq.stickers || []).length) html += `<div style="padding:8px;border:1px dashed var(--border);border-radius:10px;margin-bottom:6px;font-size:0.82rem;color:var(--muted);">🏷️ Stickers: nenhum (máx 5)</div>`;
+          html += `<p style="font-size:0.78rem;color:var(--muted);margin-top:8px;">Equipe itens nas abas Skins / Stickers / Music. Raridade maior = boost maior.</p>`;
+        } else if (tab === "cases") {
+          html += `<p style="font-weight:600;color:var(--accent2);margin-bottom:6px;">🛒 Comprar caixas / chaves</p>`;
+          CS2_CASES.forEach(c => {
+            const owned = inv.cases[c.id] || 0;
+            html += `<div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:8px;align-items:center;">
+              <div style="flex:1;font-size:0.82rem;">
+                <strong>${c.name}</strong> ${owned ? `<span style="color:var(--accent2)">×${owned}</span>` : ""}
+                <br><small style="color:var(--muted)">$${c.price}${c.keyPrice ? " + chave $" + c.keyPrice : " · sem chave"} · ${c.desc}</small>
               </div>
-              <button class="btn btn-secondary" style="width:auto;padding:6px 10px;font-size:0.72rem;" onclick="sellSkin(${realIdx})">Vender</button>
+              <button class="btn btn-green" style="width:auto;padding:8px 10px;font-size:0.75rem;" onclick="buyCase('${c.id}')">Comprar</button>
             </div>`;
           });
+          html += `<div style="padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+            <div><strong>🔑 Chave de caixa</strong><br><small style="color:var(--muted)">$90</small></div>
+            <button class="btn btn-green" style="width:auto;padding:8px 10px;font-size:0.75rem;" onclick="buyCaseKey()">Comprar</button>
+          </div>`;
+          html += `<p style="font-weight:600;color:var(--gold);margin:14px 0 6px;">📦 Suas caixas</p>`;
+          const hasCases = Object.keys(inv.cases).some(k => inv.cases[k] > 0);
+          if (!hasCases) html += `<p style="color:var(--muted);font-size:0.82rem;">Nenhuma caixa.</p>`;
+          else {
+            Object.keys(inv.cases).forEach(cid => {
+              if (!inv.cases[cid]) return;
+              const c = CS2_CASES.find(x => x.id === cid);
+              if (!c) return;
+              const needKey = c.keyPrice > 0;
+              html += `<div style="padding:10px;margin-bottom:8px;background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:12px;">
+                <strong>${c.name}</strong> ×${inv.cases[cid]}
+                <br><small style="color:var(--muted)">${needKey ? (inv.keys > 0 ? "Chave ok" : "Precisa chave") : "Sem chave"}</small>
+                <button class="btn btn-green" style="margin-top:8px;" onclick="openCase('${cid}')">🔓 Abrir</button>
+              </div>`;
+            });
+          }
+        } else {
+          // skins / stickers / music lists
+          const filterKind = tab === "skins" ? "skin" : tab === "stickers" ? "sticker" : tab === "music" ? "music" : null;
+          const list = inv.items.map(function(it, idx){ return { it: it, idx: idx }; }).filter(function(x) {
+            const k = classifyInvItem(x.it);
+            if (tab === "skins") return k === "skin" || k === "knife" || k === "gloves";
+            if (tab === "stickers") return k === "sticker";
+            if (tab === "music") return k === "music";
+            return true;
+          }).reverse();
+          html += `<p style="font-weight:600;margin:0 0 6px;">${tab === "skins" ? "🔫 Skins / Facas / Luvas" : tab === "stickers" ? "🏷️ Stickers" : "🎵 Music Kits"}
+            <button class="btn btn-secondary" style="width:auto;padding:4px 8px;font-size:0.68rem;margin-left:6px;" onclick="sellAllJunk()">Vender cinzas/azuis</button>
+          </p>`;
+          if (!list.length) {
+            html += `<p style="color:var(--muted);font-size:0.82rem;">Vazio — abra caixas (aba Caixas) ou compre na loja.</p>`;
+          } else {
+            list.slice(0, 50).forEach(function(row) {
+              const it = row.it;
+              const realIdx = row.idx;
+              const col = (CS2_RARITY[it.rarity] || {}).color || "#8b95a5";
+              const kind = classifyInvItem(it);
+              const b = equipBoostFromItem(it);
+              const clean = String(it.name||"").replace(/^★ StatTrak™ /,"★ ").replace(/^StatTrak™ /,"").replace(/^Souvenir /,"");
+              const img = typeof skinImgHtml === "function" && kind !== "sticker" && kind !== "music" ? skinImgHtml(clean, it.wear || "Field-Tested", 48) : "";
+              html += `<div class="inv-skin-row" style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;justify-content:space-between;">
+                ${img}
+                <div style="flex:1;font-size:0.82rem;min-width:0;">
+                  <strong style="color:${col}">${it.name}</strong>
+                  <br><small style="color:var(--muted)">${(CS2_RARITY[it.rarity] || {}).name || ""} · ${kind}${it.wear ? " · " + it.wear : ""} · ~$${it.value}
+                  <br>Boost: win +${(b.win*100).toFixed(1)}% · fãs +${b.fans}</small>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;">
+                  <button class="btn btn-green" style="width:auto;padding:6px 10px;font-size:0.72rem;" onclick="equipInventoryItem(${realIdx})">Equipar</button>
+                  <button class="btn btn-secondary" style="width:auto;padding:6px 10px;font-size:0.72rem;" onclick="sellSkin(${realIdx})">Vender</button>
+                </div>
+              </div>`;
+            });
+          }
         }
         panel.innerHTML = html;
       } else if (type === "spotify") {
@@ -13169,6 +13615,7 @@ window.cookPartner = function() {
       if (isSouvenir) baseName = "Souvenir " + baseName;
       let value = Math.floor(skinMarketValue(rarity) * wear.mult * (st ? 1.45 : 1) * (isSouvenir ? 1.2 : 1));
       const item = { name: baseName, rarity, value, wear: wear.name, wearId: wear.id, stattrak: st, souvenir: isSouvenir, from: c.name, season: state.season };
+      item.kind = (c.sticker ? "sticker" : c.music ? "music" : (baseName.indexOf("★") === 0 && /Gloves|Wraps/i.test(baseName) ? "gloves" : (baseName.indexOf("★") === 0 ? "knife" : "skin")));
       state.inventory.items.push(item);
       state._lastUnbox = item;
       state._casesOpened = (state._casesOpened || 0) + 1;
@@ -13895,12 +14342,13 @@ window.cookPartner = function() {
       const opp = (typeof oppStrength === "number" && !isNaN(oppStrength)) ? oppStrength : 50;
       const ourPower = tStr * 0.55 + ovr * 0.38 * ageModifier(state.age || 18);
       const energyFactor = 0.86 + ((state.energy || 50) / (state.maxEnergy || 100)) * 0.14;
-      const formFactor = 1 + (state.form || 0) * 0.028;
+      const formFactor = 1 + (state.form || 0) * 0.028 + (typeof getEquippedBoosts === "function" ? getEquippedBoosts().form : 0);
+      const equipWin = (typeof getEquippedBoosts === "function" ? getEquippedBoosts().win : 0);
       const mastery = (state.mapMastery && state.mapMastery[mapName]) || 0;
       const inPool = (state.maps || []).includes(mapName);
       const mapFactor = inPool ? (1.05 + Math.min(0.10, mastery / 800)) : (0.92 + Math.min(0.06, mastery / 1000));
       const coachFactor = state.coach ? 1.025 : 1;
-      let winP = ((ourPower * energyFactor * formFactor * mapFactor * coachFactor) - opp + 50.5) / 100;
+      let winP = ((ourPower * energyFactor * formFactor * mapFactor * coachFactor) - opp + 50.5) / 100 + equipWin;
       if (state.mode === "amador") winP += 0.03;
       if (isNaN(winP)) winP = 0.50;
       winP = Math.min(0.84, Math.max(0.22, winP));
@@ -14233,7 +14681,8 @@ window.cookPartner = function() {
       }
       const ourPower = (state.team.strength || 40) * 0.54 + skillPart;
       const energyFactor = 0.87 + ((state.energy || 50) / Math.max(1, state.maxEnergy || 100)) * 0.13;
-      const formFactor = 1 + (state.form || 0) * 0.03;
+      const formFactor = 1 + (state.form || 0) * 0.03 + (typeof getEquippedBoosts === "function" ? getEquippedBoosts().form : 0);
+      const equipWinS = (typeof getEquippedBoosts === "function" ? getEquippedBoosts().win : 0);
       const coachFactor = state.coach ? 1.025 : 1;
       const chem = state.teamChem != null ? state.teamChem : 55;
       const chemFactor = 0.94 + (chem / 100) * 0.12;
@@ -14269,7 +14718,7 @@ window.cookPartner = function() {
       state._timeoutMod = 0;
       state._timeoutUsed = false;
 
-      let p = ((ourPower * energyFactor * formFactor * coachFactor * chemFactor * venueMod * roleB * to) - oppPower + 50.5) / 100;
+      let p = ((ourPower * energyFactor * formFactor * coachFactor * chemFactor * venueMod * roleB * to) - oppPower + 50.5) / 100 + (typeof equipWinS !== "undefined" ? equipWinS : 0);
       p += (seededRandom() * 0.04) - 0.02;
 
       // tetos no meio-termo
@@ -15070,25 +15519,76 @@ window.cookPartner = function() {
         _doSaveGame();
       }, 450);
     }
+    function _serializeState() {
+      const copy = Object.assign({}, state);
+      copy.usedLegends = state.usedLegends ? Array.from(state.usedLegends) : [];
+      delete copy.matchInterval;
+      delete copy._mapTimeout;
+      delete copy.currentOffer;
+      delete copy._casePending;
+      copy._savedAt = Date.now();
+      return copy;
+    }
     function _doSaveGame() {
-      if (_saveBusy || !state) return;
+      if (_saveBusy || !state || !state.name) return;
       _saveBusy = true;
       try {
-        const copy = Object.assign({}, state);
-        copy.usedLegends = state.usedLegends ? Array.from(state.usedLegends) : [];
-        delete copy.matchInterval;
-        delete copy._mapTimeout;
-        delete copy.currentOffer;
-        // não persiste objetos enormes transitórios
-        delete copy._casePending;
-        localStorage.setItem("fenomeno_cs2_save", JSON.stringify(copy));
-      } catch (e) {}
+        const copy = _serializeState();
+        const raw = JSON.stringify(copy);
+        localStorage.setItem("fenomeno_cs2_save", raw);
+        // backup secundário (se localStorage encher / limpar parcial)
+        try { localStorage.setItem("fenomeno_cs2_save_bak", raw); } catch (e2) {}
+        // IndexedDB backup (mais resistente offline)
+        try { idbPutSave(raw); } catch (e3) {}
+      } catch (e) {
+        try {
+          // última tentativa: só campos essenciais
+          const mini = {
+            name: state.name, age: state.age, money: state.money, overall: state.overall,
+            team: state.team, attrs: state.attrs, season: state.season, month: state.month,
+            calYear: state.calYear, playerRank: state.playerRank, isCoach: state.isCoach
+          };
+          localStorage.setItem("fenomeno_cs2_save", JSON.stringify(mini));
+        } catch (e4) {}
+      }
       _saveBusy = false;
+    }
+
+    // IndexedDB save backup
+    function idbOpen() {
+      return new Promise(function(resolve, reject) {
+        try {
+          const req = indexedDB.open("fenomeno_cs2_db", 1);
+          req.onupgradeneeded = function() {
+            const db = req.result;
+            if (!db.objectStoreNames.contains("saves")) db.createObjectStore("saves");
+          };
+          req.onsuccess = function() { resolve(req.result); };
+          req.onerror = function() { reject(req.error); };
+        } catch (e) { reject(e); }
+      });
+    }
+    function idbPutSave(raw) {
+      idbOpen().then(function(db) {
+        const tx = db.transaction("saves", "readwrite");
+        tx.objectStore("saves").put(raw, "main");
+      }).catch(function(){});
+    }
+    function idbGetSave() {
+      return idbOpen().then(function(db) {
+        return new Promise(function(resolve) {
+          const tx = db.transaction("saves", "readonly");
+          const req = tx.objectStore("saves").get("main");
+          req.onsuccess = function() { resolve(req.result || null); };
+          req.onerror = function() { resolve(null); };
+        });
+      }).catch(function(){ return null; });
     }
 
     function loadGame() {
       try {
-        const raw = localStorage.getItem("fenomeno_cs2_save");
+        let raw = localStorage.getItem("fenomeno_cs2_save");
+        if (!raw) raw = localStorage.getItem("fenomeno_cs2_save_bak");
         if (!raw) return false;
         const data = JSON.parse(raw);
         if (!data || !data.name) return false;
@@ -15099,6 +15599,18 @@ window.cookPartner = function() {
         return true;
       } catch (e) { return false; }
     }
+    // tenta recuperar do IDB se localStorage falhar (async)
+    window.tryRecoverSaveFromIdb = function(cb) {
+      idbGetSave().then(function(raw) {
+        if (!raw) { if (cb) cb(false); return; }
+        try {
+          if (!localStorage.getItem("fenomeno_cs2_save")) {
+            localStorage.setItem("fenomeno_cs2_save", raw);
+          }
+          if (cb) cb(true);
+        } catch (e) { if (cb) cb(false); }
+      });
+    };
 
     function clearSave() {
       try { localStorage.removeItem("fenomeno_cs2_save"); } catch (e) {}
@@ -15315,27 +15827,82 @@ window.cookPartner = function() {
       if (!el) {
         el = document.createElement("div");
         el.id = "offlineBadge";
-        el.style.cssText = "display:none;position:fixed;top:8px;right:8px;z-index:99980;font-size:0.7rem;font-weight:800;padding:5px 10px;border-radius:999px;background:rgba(248,81,73,0.92);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.35);";
+        el.style.cssText = "display:none;position:fixed;top:8px;right:8px;z-index:99980;font-size:0.72rem;font-weight:800;padding:6px 12px;border-radius:999px;background:rgba(248,81,73,0.95);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.4);cursor:pointer;";
+        el.title = "Toque para dicas offline";
+        el.onclick = function() { showOfflineHelp(); };
         document.body.appendChild(el);
       }
       if (isOnline()) {
         el.style.display = "none";
         document.body.classList.remove("is-offline");
+        // flush pending offline queue
+        try { flushOfflineQueue(); } catch (e) {}
       } else {
         el.style.display = "block";
-        el.textContent = "📴 Offline — carreira ok";
+        el.textContent = "📴 Offline — carreira + save OK";
         document.body.classList.add("is-offline");
+        try { saveGame(true); } catch (e) {}
       }
+    }
+    function showOfflineHelp() {
+      alert(
+        "MODO OFFLINE\n\n" +
+        "✅ Funciona: carreira, treino, partidas, campeonatos, loja local, inventário, save, música do jogo (🎵)\n\n" +
+        "❌ Precisa internet: Spotify, fotos de skins (CDN), tradução IA, login Spotify\n\n" +
+        "Dica: instale o app (📲) e abra 1x online — depois roda sem Wi‑Fi.\n" +
+        "Save fica no celular (localStorage + backup)."
+      );
+    }
+    // fila de ações pra quando voltar online
+    function getOfflineQueue() {
+      try { return JSON.parse(localStorage.getItem("fenomeno_offline_q") || "[]"); } catch (e) { return []; }
+    }
+    function pushOfflineQueue(item) {
+      try {
+        const q = getOfflineQueue();
+        q.push(Object.assign({ at: Date.now() }, item));
+        localStorage.setItem("fenomeno_offline_q", JSON.stringify(q.slice(-30)));
+      } catch (e) {}
+    }
+    function flushOfflineQueue() {
+      const q = getOfflineQueue();
+      if (!q.length) return;
+      try { localStorage.removeItem("fenomeno_offline_q"); } catch (e) {}
+      try { addLog("🌐 " + q.length + " ação(ões) pendente(s) liberada(s)."); } catch (e) {}
     }
     window.addEventListener("online", function() {
       updateOfflineBadge();
-      try { addLog("🌐 Internet de volta."); } catch (e) {}
+      try { addLog("🌐 Internet de volta. Save sincronizado localmente."); } catch (e) {}
+      try { saveGame(true); } catch (e) {}
+      try { precacheGameShell(); } catch (e) {}
     });
     window.addEventListener("offline", function() {
       updateOfflineBadge();
-      try { addLog("📴 Modo offline. Carreira, save e música do jogo seguem."); } catch (e) {}
+      try { saveGame(true); } catch (e) {}
+      try { addLog("📴 Offline. Carreira, treino, camps e save continuam."); } catch (e) {}
+      try {
+        if (!localStorage.getItem("fenomeno_offline_tip")) {
+          localStorage.setItem("fenomeno_offline_tip", "1");
+          setTimeout(showOfflineHelp, 400);
+        }
+      } catch (e) {}
+    });
+    // autosave periódico (mais agressivo offline)
+    setInterval(function() {
+      try {
+        if (state && state.name) saveGame(true);
+      } catch (e) {}
+    }, 25000);
+    document.addEventListener("visibilitychange", function() {
+      if (document.visibilityState === "hidden") {
+        try { saveGame(true); } catch (e) {}
+      }
+    });
+    window.addEventListener("beforeunload", function() {
+      try { saveGame(true); } catch (e) {}
     });
     try { updateOfflineBadge(); } catch (e) {}
+    try { window.tryRecoverSaveFromIdb && window.tryRecoverSaveFromIdb(); } catch (e) {}
 
     function setupSingleFilePwa() {
       const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0b0e14"/><stop offset="100%" stop-color="#121820"/></linearGradient></defs><rect width="512" height="512" rx="96" fill="url(#g)"/><rect x="48" y="48" width="416" height="416" rx="72" fill="none" stroke="#00e701" stroke-width="16" opacity="0.9"/><text x="256" y="290" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="140" font-weight="900" fill="#00e701">CS</text><text x="256" y="360" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#f0c14b">FENOMENO</text></svg>`;
@@ -15378,79 +15945,115 @@ window.cookPartner = function() {
       const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
       if (location.protocol !== "https:" && !isLocal) return;
 
-      // Cache-first do próprio jogo + fallback offline
+      // Service Worker robusto (cache-first + shell)
       const swCode = `
-        const CACHE = 'fenomeno-cs2-offline-v6';
-        const ASSETS = ['./', './index.html'];
+        const CACHE = 'fenomeno-cs2-offline-v7';
+        const SHELL = ['./', './index.html', './index.htm'];
         self.addEventListener('install', (e) => {
-          e.waitUntil(
-            caches.open(CACHE).then(async (c) => {
-              for (const u of ASSETS) {
-                try { await c.add(u); } catch (err) {}
+          e.waitUntil((async () => {
+            const c = await caches.open(CACHE);
+            for (const u of SHELL) { try { await c.add(u); } catch (err) {} }
+            try {
+              const res = await fetch(self.registration.scope, { cache: 'reload' });
+              if (res && res.ok) {
+                await c.put('./', res.clone());
+                await c.put('./index.html', res.clone());
               }
-              try {
-                const res = await fetch(self.registration.scope, { cache: 'no-store' });
-                if (res && res.ok) await c.put('./', res.clone());
-              } catch (err) {}
-            }).then(() => self.skipWaiting())
-          );
+            } catch (err) {}
+            await self.skipWaiting();
+          })());
         });
         self.addEventListener('activate', (e) => {
-          e.waitUntil(
-            caches.keys().then((keys) =>
-              Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-            ).then(() => self.clients.claim())
-          );
+          e.waitUntil((async () => {
+            const keys = await caches.keys();
+            await Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)));
+            await self.clients.claim();
+          })());
         });
         self.addEventListener('fetch', (e) => {
           if (e.request.method !== 'GET') return;
           const url = new URL(e.request.url);
-          // só cacheia mesmo origin (o HTML do jogo)
           const same = url.origin === self.location.origin;
           if (!same) {
-            // Spotify/API/skins: tenta rede, senão falha silenciosa
             e.respondWith(fetch(e.request).catch(() => new Response('', { status: 503, statusText: 'offline' })));
             return;
           }
-          e.respondWith(
-            caches.match(e.request).then((hit) => {
-              if (hit) {
-                // atualiza em background se online
-                fetch(e.request).then((res) => {
-                  if (res && res.ok) caches.open(CACHE).then((c) => c.put(e.request, res.clone()));
-                }).catch(() => {});
-                return hit;
-              }
-              return fetch(e.request).then((res) => {
-                if (res && res.ok) {
-                  const copy = res.clone();
-                  caches.open(CACHE).then((c) => c.put(e.request, copy)).catch(() => {});
+          // navegação: sempre tenta servir o shell offline
+          const nav = e.request.mode === 'navigate' || (e.request.headers.get('accept') || '').includes('text/html');
+          if (nav) {
+            e.respondWith((async () => {
+              try {
+                const net = await fetch(e.request);
+                if (net && net.ok) {
+                  const c = await caches.open(CACHE);
+                  c.put('./', net.clone()).catch(()=>{});
+                  c.put('./index.html', net.clone()).catch(()=>{});
+                  c.put(e.request, net.clone()).catch(()=>{});
                 }
-                return res;
-              }).catch(() =>
-                caches.match('./').then((h) => h || caches.match('./index.html') ||
-                  new Response('<!doctype html><title>Offline</title><h1>Offline</h1><p>Abra o jogo uma vez com internet.</p>', { headers: { 'Content-Type': 'text/html' } }))
-              );
-            })
-          );
+                return net;
+              } catch (err) {
+                const c = await caches.open(CACHE);
+                return (await c.match(e.request)) || (await c.match('./')) || (await c.match('./index.html')) ||
+                  new Response('<!doctype html><meta charset=utf-8><title>Fenômeno Offline</title><body style="font-family:sans-serif;background:#0b0e14;color:#eee;padding:24px"><h1>📴 Offline</h1><p>Abra o jogo <b>uma vez com internet</b> para gravar o cache. Depois funciona sem Wi‑Fi.</p></body>', { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+              }
+            })());
+            return;
+          }
+          e.respondWith((async () => {
+            const c = await caches.open(CACHE);
+            const hit = await c.match(e.request);
+            if (hit) {
+              fetch(e.request).then((res) => { if (res && res.ok) c.put(e.request, res.clone()); }).catch(()=>{});
+              return hit;
+            }
+            try {
+              const res = await fetch(e.request);
+              if (res && res.ok) c.put(e.request, res.clone()).catch(()=>{});
+              return res;
+            } catch (err) {
+              return new Response('', { status: 503, statusText: 'offline' });
+            }
+          })());
+        });
+        self.addEventListener('message', (e) => {
+          if (e.data === 'skipWaiting') self.skipWaiting();
         });
       `;
       const swBlob = new Blob([swCode], { type: "text/javascript" });
       const swUrl = URL.createObjectURL(swBlob);
-      navigator.serviceWorker.register(swUrl).then(function() {
-        // força update do cache na 1ª carga online
-        try {
-          if (isOnline()) {
-            caches.open('fenomeno-cs2-offline-v6').then(function(c) {
-              c.add(location.href).catch(function(){});
-              c.add('./').catch(function(){});
-            });
-          }
-        } catch (e) {}
+      navigator.serviceWorker.register(swUrl).then(function(reg) {
+        try { precacheGameShell(); } catch (e) {}
+        if (reg && reg.waiting) {
+          try { reg.waiting.postMessage('skipWaiting'); } catch (e) {}
+        }
       }).catch(function() {
-        // Blob SW bloqueado: jogo já carregado continua offline na sessão
+        // Blob SW bloqueado em alguns hosts — ainda precacheia via Cache API
+        try { precacheGameShell(); } catch (e) {}
       });
     }
+
+    // Precache do shell pelo thread principal (funciona mesmo se SW blob falhar)
+    function precacheGameShell() {
+      if (!('caches' in window) || !isOnline()) return;
+      caches.open('fenomeno-cs2-offline-v7').then(function(c) {
+        const urls = [location.href, location.pathname, './', './index.html'];
+        urls.forEach(function(u) {
+          fetch(u, { cache: 'reload' }).then(function(res) {
+            if (res && res.ok) c.put(u, res.clone()).catch(function(){});
+          }).catch(function(){});
+        });
+        // grava resposta atual se possível
+        try {
+          const html = document.documentElement.outerHTML;
+          if (html && html.length > 1000) {
+            const resp = new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+            c.put('./', resp.clone()).catch(function(){});
+            c.put(location.href, resp.clone()).catch(function(){});
+          }
+        } catch (e) {}
+      }).catch(function(){});
+    }
+    window.precacheGameShell = precacheGameShell;
 
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", setupPwaInstall);
