@@ -5508,39 +5508,83 @@ function toggleLanguage() {
       { id: "case_souvenir", name: "Pacote Souvenir Major", price: 450, keyPrice: 0, desc: "Sem chave · souvenir", pool: "souvenir", souvenir: true },
       { id: "case_souvenir_kat", name: "Souvenir IEM Katowice", price: 520, keyPrice: 0, desc: "Souvenir LAN", pool: "souvenir", souvenir: true },
       { id: "case_souvenir_col", name: "Souvenir Cologne", price: 500, keyPrice: 0, desc: "Souvenir Cologne", pool: "souvenir", souvenir: true },
-      { id: "case_capsule", name: "Sticker Capsule", price: 120, keyPrice: 0, desc: "Só stickers (milspec+)", pool: null, sticker: true },
-      { id: "case_agent", name: "Agent Collection Box", price: 380, keyPrice: 90, desc: "Agents cosméticos", pool: "prisma" },
-      { id: "case_music", name: "Music Kit Box", price: 140, keyPrice: 0, desc: "Music kits", pool: null, music: true },
+      { id: "case_capsule", name: "Sticker Capsule", price: 120, keyPrice: 0, desc: "Só stickers", pool: null, sticker: true },
+      { id: "case_agent", name: "Agent Collection Box", price: 380, keyPrice: 90, desc: "Só agents", pool: null, agent: true },
+      { id: "case_music", name: "Music Kit Box", price: 140, keyPrice: 0, desc: "Só music kits", pool: null, music: true },
       { id: "case_gallery", name: "Gallery Case", price: 255, keyPrice: 90, desc: "2024 Gallery", pool: "kilowatt" },
       { id: "case_gallery2", name: "Fever Case", price: 265, keyPrice: 90, desc: "Fever", pool: "revolution" }
     ];
 
+    const CS2_STICKER_POOL = [
+      "Sticker | Superstar", "Sticker | Clutch King", "Sticker | Bling", "Sticker | Team Gold",
+      "Sticker | Holo Major", "Sticker | Foil Autograph", "Sticker | Gold Katowice", "Sticker | Holo Cologne",
+      "Sticker | Natus Vincere (Holo)", "Sticker | FURIA (Gold)", "Sticker | Vitality (Foil)", "Sticker | G2 (Holo)",
+      "Sticker | s1mple Autograph", "Sticker | ZywOo Autograph", "Sticker | NiKo Autograph", "Sticker | donk Autograph",
+      "Sticker | FalleN (Gold)", "Sticker | KSCERATO (Holo)", "Sticker | m0NESY (Foil)", "Sticker | ropz (Gold)",
+      "Sticker | Entry Fragger", "Sticker | AWP God", "Sticker | Eco Round", "Sticker | Ace",
+      "Sticker | Bomb Defused", "Sticker | Clutch or Kick", "Sticker | Rush B", "Sticker | Save Weapons",
+      "Sticker | Spirit (Holo)", "Sticker | MOUZ (Foil)", "Sticker | FaZe (Gold)", "Sticker | Astralis (Holo)",
+      "Sticker | apEX Autograph", "Sticker | arT Autograph", "Sticker | b1t Autograph", "Sticker | frozen Autograph",
+      "Sticker | Major Champion", "Sticker | MVP", "Sticker | Wallbang", "Sticker | No Scope"
+    ];
+    const CS2_MUSIC_POOL = [
+      "Music Kit | Crimson Assault", "Music Kit | Desert Fire", "Music Kit | Hotline Miami",
+      "Music Kit | The Talos Principle", "Music Kit | IsoRhythm", "Music Kit | monomen",
+      "Music Kit | Austin Wintory, Mocha Octave", "Music Kit | Daniel Sadowski, Total Domination",
+      "Music Kit | Feed Me, High Noon", "Music Kit | Leno, All for Dust", "Music Kit | Mateo Messina, For No Mankind",
+      "Music Kit | Michael Bross, Java Havana Function", "Music Kit | Sasha, LNOE", "Music Kit | Skog, Metal",
+      "Music Kit | Damjan Mravunac, The Talos Principle", "Music Kit | Various Artists, Anubis",
+      "Music Kit | Neck Deep, The Lowlife Pack", "Music Kit | AWOLNATION, I Am", "Music Kit | Dren, Death's Head Demolition",
+      "Music Kit | Darude, Moments CSGO", "Music Kit | Ki:Theory, MOLOTOV", "Music Kit | Proxy, Battlepack"
+    ];
+    const CS2_AGENT_POOL = [
+      "Agent | Cmdr. Mae 'Dead Cold' Jamison | SWAT",
+      "Agent | 1st Lieutenant Farlow | SWAT",
+      "Agent | John 'Van Healen' Kask | SWAT",
+      "Agent | Bio-Haz Specialist | SWAT",
+      "Agent | Sergeant Bombson | SWAT",
+      "Agent | Chem-Haz Specialist | SWAT",
+      "Agent | Operator | FBI SWAT",
+      "Agent | Special Agent Ava | FBI",
+      "Agent | Markus Delrow | FBI HRT",
+      "Agent | Michael Syfers | FBI Sniper",
+      "Agent | Officer Jacques Beltram | FBI",
+      "Agent | Sous-Lieutenant Medic | Gendarmerie Nationale",
+      "Agent | Chem-Haz Capitaine | Gendarmerie Nationale",
+      "Agent | Chef d'Escadron Rouchard | Gendarmerie Nationale",
+      "Agent | Lieutenant 'Tree Hugger' Farlow | SWAT",
+      "Agent | Lt. Commander Ricksaw | NSWC SEAL",
+      "Agent | 'Blueberries' Buckshot | NSWC SEAL",
+      "Agent | Seal Team 6 Soldier | NSWC SEAL",
+      "Agent | Buckshot | NSWC SEAL",
+      "Agent | 3rd Commando Company | KSK",
+      "Agent | Dragomir | Sabre",
+      "Agent | Rezan The Ready | Sabre",
+      "Agent | 'The Doctor' Romanov | Sabre",
+      "Agent | Maximus | Sabre",
+      "Agent | Blackwolf | Sabre",
+      "Agent | The Elite Mr. Muhlik | Elite Crew",
+      "Agent | Ground Rebel | Elite Crew",
+      "Agent | Osiris | Elite Crew",
+      "Agent | Prof. Shahmat | Elite Crew",
+      "Agent | Getaway Sally | The Professionals",
+      "Agent | Number K | The Professionals",
+      "Agent | Little Kev | The Professionals",
+      "Agent | Safecracker Voltzmann | The Professionals",
+      "Agent | Crasswater The Forgotten | Guerrilla Warfare",
+      "Agent | Vypa Sista of the Revolution | Guerrilla Warfare",
+      "Agent | Col. Mangos Dabisi | Guerrilla Warfare",
+      "Agent | Arno The Overgrown | Guerrilla Warfare",
+      "Agent | 'Medium Rare' Crasswater | Guerrilla Warfare",
+      "Agent | Street Soldier | Brazilian 1st Battalion"
+    ];
+
     function getCaseSkinPool(caseObj, rarity) {
-      if (caseObj && caseObj.sticker) {
-        const stickers = [
-          "Sticker | Superstar", "Sticker | Clutch King", "Sticker | Bling", "Sticker | Team Gold",
-          "Sticker | Holo Major", "Sticker | Foil Autograph", "Sticker | Gold Katowice", "Sticker | Holo Cologne",
-          "Sticker | Natus Vincere (Holo)", "Sticker | FURIA (Gold)", "Sticker | Vitality (Foil)", "Sticker | G2 (Holo)",
-          "Sticker | s1mple Autograph", "Sticker | ZywOo Autograph", "Sticker | NiKo Autograph", "Sticker | donk Autograph",
-          "Sticker | FalleN (Gold)", "Sticker | KSCERATO (Holo)", "Sticker | m0NESY (Foil)", "Sticker | ropz (Gold)",
-          "Sticker | Entry Fragger", "Sticker | AWP God", "Sticker | Eco Round", "Sticker | Ace",
-          "Sticker | Bomb Defused", "Sticker | Clutch or Kick", "Sticker | Rush B", "Sticker | Save Weapons"
-        ];
-        return stickers;
-      }
-      if (caseObj && caseObj.music) {
-        return [
-          "Music Kit | Crimson Assault", "Music Kit | Desert Fire", "Music Kit | Hotline Miami",
-          "Music Kit | The Talos Principle", "Music Kit | IsoRhythm", "Music Kit | monomen",
-          "Music Kit | Austin Wintory, Mocha Octave", "Music Kit | Daniel Sadowski, Total Domination",
-          "Music Kit | Feed Me, High Noon", "Music Kit | Leno, All for Dust", "Music Kit | Mateo Messina, For No Mankind",
-          "Music Kit | Michael Bross, Java Havana Function", "Music Kit | Sasha, LNOE", "Music Kit | Skog, Metal",
-          "Music Kit | Damjan Mravunac, The Talos Principle", "Music Kit | Various Artists, Anubis"
-        ];
-      }
+      if (caseObj && caseObj.sticker) return CS2_STICKER_POOL.slice();
+      if (caseObj && caseObj.music) return CS2_MUSIC_POOL.slice();
+      if (caseObj && caseObj.agent) return CS2_AGENT_POOL.slice();
       const local = caseObj && caseObj.pool && CS2_CASE_POOLS[caseObj.pool];
       if (local && local[rarity] && local[rarity].length) return local[rarity];
-      // fallback global + mistura com local milspec se existir
       const global = CS2_CASE_SKINS[rarity] || CS2_CASE_SKINS.consumer;
       if (local && local.milspec && rarity === "milspec") return global.concat(local.milspec);
       return global;
@@ -5599,7 +5643,7 @@ function toggleLanguage() {
       if (!state.inventory.cases) state.inventory.cases = {};
       if (state.inventory.keys == null) state.inventory.keys = 0;
       if (!state.inventory.items) state.inventory.items = [];
-      if (!state.equipped) state.equipped = { skin: null, knife: null, gloves: null, stickers: [], music: null };
+      if (!state.equipped) state.equipped = { skin: null, knife: null, gloves: null, stickers: [], music: null, agent: null };
       if (!state.equipped.stickers) state.equipped.stickers = [];
     }
 
@@ -5607,8 +5651,9 @@ function toggleLanguage() {
       if (!it) return "skin";
       if (it.kind) return it.kind;
       const n = String(it.name || "");
-      if (n.indexOf("Sticker |") === 0 || n.indexOf("Sticker") === 0) return "sticker";
-      if (n.indexOf("Music Kit") === 0) return "music";
+      if (/^Sticker/i.test(n) || n.indexOf("Sticker |") === 0) return "sticker";
+      if (/^Music Kit/i.test(n)) return "music";
+      if (/^Agent/i.test(n)) return "agent";
       if (n.indexOf("★") === 0 && /Gloves|Wraps/i.test(n)) return "gloves";
       if (n.indexOf("★") === 0 || /Knife|Bayonet|Karambit|Butterfly|Talon|Skeleton|Nomad|Huntsman|Classic|Paracord|Survival|Ursus|Stiletto|Navaja/i.test(n)) return "knife";
       return "skin";
@@ -5632,6 +5677,7 @@ function toggleLanguage() {
       if (kind === "gloves") { b.form *= 1.2; b.morale += 1; }
       if (kind === "music") { b.win = 0.006; b.energy = 5; b.form = 0.03; b.fans = 10; b.morale = 2; }
       if (kind === "sticker") { b.win = 0.003; b.fans = 20; b.morale = 2; b.form = 0.01; }
+      if (kind === "agent") { b.win = 0.01; b.fans = 40; b.morale = 3; b.form = 0.02; b.energy = 2; }
       if (it.stattrak) { b.win *= 1.1; b.fans = Math.floor(b.fans * 1.2); }
       return b;
     }
@@ -5639,7 +5685,7 @@ function toggleLanguage() {
     function getEquippedBoosts() {
       ensureInventory();
       const eq = state.equipped || {};
-      const parts = [eq.skin, eq.knife, eq.gloves, eq.music].concat(eq.stickers || []);
+      const parts = [eq.skin, eq.knife, eq.gloves, eq.music, eq.agent].concat(eq.stickers || []);
       const total = { win: 0, form: 0, fans: 0, energy: 0, morale: 0, train: 0 };
       parts.forEach(function(it) {
         if (!it) return;
@@ -5678,6 +5724,11 @@ function toggleLanguage() {
         state.inventory.items.splice(idx, 1);
         state.equipped.music = it;
         addLog("🎵 Music Kit equipado: " + it.name);
+      } else if (kind === "agent") {
+        if (state.equipped.agent) state.inventory.items.push(state.equipped.agent);
+        state.inventory.items.splice(idx, 1);
+        state.equipped.agent = it;
+        addLog("🕵️ Agent equipado: " + it.name);
       } else if (kind === "knife") {
         if (state.equipped.knife) state.inventory.items.push(state.equipped.knife);
         state.inventory.items.splice(idx, 1);
@@ -6318,7 +6369,7 @@ function toggleLanguage() {
 
 
     // ===== Patch notes (aparece ao abrir) =====
-    const PATCH_VERSION = "7.4";
+    const PATCH_VERSION = "7.5";
     const PATCH_NOTES = {
       pt: {
         title: "📋 Patch notes",
@@ -12141,6 +12192,7 @@ function toggleLanguage() {
           html += slotRow("🔪 Faca", eq.knife, "knife");
           html += slotRow("🧤 Luvas", eq.gloves, "gloves");
           html += slotRow("🎵 Music Kit", eq.music, "music");
+          html += slotRow("🕵️ Agent", eq.agent, "agent");
           (eq.stickers || []).forEach(function(st, i) {
             html += slotRow("🏷️ Sticker " + (i+1), st, "sticker", i);
           });
@@ -12183,7 +12235,7 @@ function toggleLanguage() {
           const filterKind = tab === "skins" ? "skin" : tab === "stickers" ? "sticker" : tab === "music" ? "music" : null;
           const list = inv.items.map(function(it, idx){ return { it: it, idx: idx }; }).filter(function(x) {
             const k = classifyInvItem(x.it);
-            if (tab === "skins") return k === "skin" || k === "knife" || k === "gloves";
+            if (tab === "skins") return k === "skin" || k === "knife" || k === "gloves" || k === "agent";
             if (tab === "stickers") return k === "sticker";
             if (tab === "music") return k === "music";
             return true;
@@ -13566,18 +13618,34 @@ window.cookPartner = function() {
       if (rarity === "gold") return seededRandom() < 0.15;
       return seededRandom() < 0.10;
     }
-    function buildCaseReel(finalItem) {
+    function buildCaseReel(finalItem, caseObj) {
       const rarities = ["consumer","industrial","milspec","restricted","classified","covert","gold"];
       const slots = [];
       const slotCount = (window.DEVICE && window.DEVICE.mode === "mobile") ? 28 : 40;
+      let forcedPool = null;
+      if (caseObj && caseObj.sticker) forcedPool = CS2_STICKER_POOL;
+      else if (caseObj && caseObj.music) forcedPool = CS2_MUSIC_POOL;
+      else if (caseObj && caseObj.agent) forcedPool = CS2_AGENT_POOL;
+      else if (finalItem && finalItem.kind === "sticker") forcedPool = CS2_STICKER_POOL;
+      else if (finalItem && finalItem.kind === "music") forcedPool = CS2_MUSIC_POOL;
+      else if (finalItem && finalItem.kind === "agent") forcedPool = CS2_AGENT_POOL;
+
       for (let i = 0; i < slotCount; i++) {
-        const rar = rarities[Math.min(rarities.length - 1, Math.floor(seededRandom() * seededRandom() * rarities.length))];
-        const pool = CS2_CASE_SKINS[rar] || CS2_CASE_SKINS.consumer;
-        slots.push({ name: pick(pool), rarity: rar });
+        if (forcedPool) {
+          const rar = ["milspec","restricted","classified","covert"][Math.floor(seededRandom() * 4)];
+          slots.push({ name: pick(forcedPool), rarity: rar });
+        } else {
+          const rar = rarities[Math.min(rarities.length - 1, Math.floor(seededRandom() * seededRandom() * rarities.length))];
+          const pool = CS2_CASE_SKINS[rar] || CS2_CASE_SKINS.consumer;
+          slots.push({ name: pick(pool), rarity: rar });
+        }
       }
-      // winning slot near end
       const winIdx = Math.max(12, slotCount - 6) + Math.floor(seededRandom() * 3);
-      slots[winIdx] = { name: finalItem.name.replace(/^★ StatTrak™ /, "★ ").replace(/^StatTrak™ /, ""), rarity: finalItem.rarity, win: true };
+      const winName = String(finalItem.name || "")
+        .replace(/^★ StatTrak™ /, "★ ")
+        .replace(/^StatTrak™ /, "")
+        .replace(/^Souvenir /, "");
+      slots[winIdx] = { name: winName, rarity: finalItem.rarity, win: true };
       return { slots, winIdx };
     }
     let _casePending = null;
@@ -13602,20 +13670,53 @@ window.cookPartner = function() {
       if (needKey) state.inventory.keys--;
 
       const isSouvenir = !!(c.souvenir || caseId.indexOf("souvenir") >= 0);
-      let rarity = rollCaseRarity(isSouvenir);
-      if (c.goldBias && !isSouvenir && seededRandom() < 0.03) rarity = "gold";
-      else if (c.goldBias && rarity === "consumer" && seededRandom() < 0.15) rarity = "milspec";
-      if (c.sticker && (rarity === "gold" || rarity === "covert")) rarity = "restricted";
-      if (c.music) rarity = seededRandom() < 0.7 ? "milspec" : "restricted";
-      const pool = getCaseSkinPool(c, rarity);
-      let baseName = pick(pool);
-      const wear = isSouvenir ? { id: "ft", name: "Field-Tested", mult: 1.0 } : rollWear();
-      const st = !isSouvenir && rollStatTrak(rarity);
-      if (st) baseName = (baseName.indexOf("★") === 0 ? "★ StatTrak™ " + baseName.slice(2).trim() : "StatTrak™ " + baseName);
-      if (isSouvenir) baseName = "Souvenir " + baseName;
-      let value = Math.floor(skinMarketValue(rarity) * wear.mult * (st ? 1.45 : 1) * (isSouvenir ? 1.2 : 1));
-      const item = { name: baseName, rarity, value, wear: wear.name, wearId: wear.id, stattrak: st, souvenir: isSouvenir, from: c.name, season: state.season };
-      item.kind = (c.sticker ? "sticker" : c.music ? "music" : (baseName.indexOf("★") === 0 && /Gloves|Wraps/i.test(baseName) ? "gloves" : (baseName.indexOf("★") === 0 ? "knife" : "skin")));
+      const isSpecial = !!(c.sticker || c.music || c.agent);
+
+      let rarity, pool, baseName, wear, st, value, kind;
+
+      if (c.sticker) {
+        // Só stickers — raridade visual por "qualidade" do sticker
+        const r = seededRandom();
+        rarity = r < 0.55 ? "milspec" : r < 0.82 ? "restricted" : r < 0.95 ? "classified" : "covert";
+        pool = CS2_STICKER_POOL;
+        baseName = pick(pool);
+        wear = { id: "fn", name: "Factory New", mult: 1 };
+        st = false;
+        value = Math.floor(skinMarketValue(rarity) * 0.35);
+        kind = "sticker";
+      } else if (c.music) {
+        const r = seededRandom();
+        rarity = r < 0.65 ? "milspec" : r < 0.9 ? "restricted" : "classified";
+        pool = CS2_MUSIC_POOL;
+        baseName = pick(pool);
+        wear = { id: "fn", name: "Factory New", mult: 1 };
+        st = false;
+        value = Math.floor(skinMarketValue(rarity) * 0.5);
+        kind = "music";
+      } else if (c.agent) {
+        const r = seededRandom();
+        rarity = r < 0.5 ? "restricted" : r < 0.85 ? "classified" : "covert";
+        pool = CS2_AGENT_POOL;
+        baseName = pick(pool);
+        wear = { id: "fn", name: "Factory New", mult: 1 };
+        st = false;
+        value = Math.floor(skinMarketValue(rarity) * 0.7);
+        kind = "agent";
+      } else {
+        rarity = rollCaseRarity(isSouvenir);
+        if (c.goldBias && !isSouvenir && seededRandom() < 0.03) rarity = "gold";
+        else if (c.goldBias && rarity === "consumer" && seededRandom() < 0.15) rarity = "milspec";
+        pool = getCaseSkinPool(c, rarity);
+        baseName = pick(pool);
+        wear = isSouvenir ? { id: "ft", name: "Field-Tested", mult: 1.0 } : rollWear();
+        st = !isSouvenir && rollStatTrak(rarity);
+        if (st) baseName = (baseName.indexOf("★") === 0 ? "★ StatTrak™ " + baseName.slice(2).trim() : "StatTrak™ " + baseName);
+        if (isSouvenir) baseName = "Souvenir " + baseName;
+        value = Math.floor(skinMarketValue(rarity) * wear.mult * (st ? 1.45 : 1) * (isSouvenir ? 1.2 : 1));
+        kind = (baseName.indexOf("★") === 0 && /Gloves|Wraps/i.test(baseName) ? "gloves" : (baseName.indexOf("★") === 0 ? "knife" : "skin"));
+      }
+
+      const item = { name: baseName, rarity, value, wear: wear.name, wearId: wear.id, stattrak: st, souvenir: isSouvenir, from: c.name, season: state.season, kind: kind };
       state.inventory.items.push(item);
       state._lastUnbox = item;
       state._casesOpened = (state._casesOpened || 0) + 1;
@@ -13634,7 +13735,7 @@ window.cookPartner = function() {
       }
       if (title) title.textContent = "Abrindo " + c.name + "...";
       res.classList.remove("show");
-      const built = buildCaseReel(item);
+      const built = buildCaseReel(item, c);
       reel.style.transition = "none";
       reel.style.transform = "translateX(0)";
       reel.innerHTML = built.slots.map(function(s) {
