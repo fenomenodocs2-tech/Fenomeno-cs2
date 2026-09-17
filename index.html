@@ -2642,6 +2642,7 @@
         <button class="btn btn-secondary" style="flex:1; min-width:70px; padding:10px; font-size:0.75rem;" onclick="showExtra('maps')" data-i18n="tab_maps">🗺 Mapas</button>
         <button class="btn btn-secondary" style="flex:1; min-width:70px; padding:10px; font-size:0.75rem;" onclick="showExtra('rel')" data-i18n="tab_rel">💕 Relação</button>
         <button class="btn btn-secondary" style="flex:1; min-width:70px; padding:10px; font-size:0.75rem;" onclick="showExtra('prizes')" data-i18n="tab_prizes">🏆 Prêmios</button>
+        <button class="btn btn-secondary" style="flex:1; min-width:70px; padding:10px; font-size:0.75rem;" onclick="showExtra('hltv')" data-i18n="tab_hltv">🪪 HLTV</button>
         <button class="btn btn-secondary" style="flex:1; min-width:70px; padding:10px; font-size:0.75rem;" onclick="showExtra('achievements')">🎖️ Conquistas</button>
         <button class="btn btn-secondary" style="flex:1; min-width:70px; padding:10px; font-size:0.75rem;" onclick="showExtra('hub')" data-i18n="tab_hub">⚡ Hub</button>
         <button class="btn btn-secondary" style="flex:1; min-width:70px; padding:10px; font-size:0.75rem;" onclick="showExtra('inventory')" data-i18n="tab_inv">🎒 Inventário</button>
@@ -6369,7 +6370,7 @@ function toggleLanguage() {
 
 
     // ===== Patch notes (aparece ao abrir) =====
-    const PATCH_VERSION = "7.5";
+    const PATCH_VERSION = "7.6";
     const PATCH_NOTES = {
       pt: {
         title: "📋 Patch notes",
@@ -6623,6 +6624,190 @@ function toggleLanguage() {
         value >= 55 ? "Fraco..." : "Quase inútil no banco.";
       updateDraftChrome(tier, 8);
       state._draftBusy = false;
+    }
+
+
+    // ===== HLTV profile (times + títulos) =====
+    function ensureHltvProfile() {
+      if (!state.teamHistory) state.teamHistory = [];
+      if (!state.titleHistory) state.titleHistory = [];
+      if (!state.hltvStats) state.hltvStats = { maps: 0, wins: 0, losses: 0, ratingSum: 0, ratingN: 0, majMVPs: 0 };
+    }
+
+    function recordTeamJoin(team, reason) {
+      ensureHltvProfile();
+      if (!team || !team.name) return;
+      const year = state.calYear || 2024;
+      const month = state.month || 1;
+      // fecha time anterior
+      if (state.teamHistory.length) {
+        const last = state.teamHistory[state.teamHistory.length - 1];
+        if (last && !last.toYear && last.team === team.name) return; // already current
+        if (last && !last.toYear) {
+          last.toYear = year;
+          last.toMonth = month;
+        }
+      }
+      // evita duplicar se mesmo time
+      const cur = state.teamHistory[state.teamHistory.length - 1];
+      if (cur && cur.team === team.name && !cur.toYear) return;
+      state.teamHistory.push({
+        team: team.name,
+        tier: team.tier,
+        fromYear: year,
+        fromMonth: month,
+        toYear: null,
+        toMonth: null,
+        reason: reason || "join"
+      });
+    }
+
+    function recordTitle(tourneyName, opts) {
+      ensureHltvProfile();
+      opts = opts || {};
+      const year = state.calYear || 2024;
+      const teamName = (state.team && state.team.name) || opts.team || "—";
+      const prestige = opts.prestige != null ? opts.prestige : 3;
+      const isMajor = !!opts.major || prestige >= 5 || /Major/i.test(String(tourneyName || ""));
+      const entry = {
+        name: tourneyName || "Título",
+        team: teamName,
+        year: year,
+        month: state.month || 1,
+        prestige: prestige,
+        major: isMajor,
+        mvp: !!opts.mvp,
+        coach: !!state.isCoach
+      };
+      // evita spam duplicado no mesmo mês/torneio
+      const dup = state.titleHistory.some(function(x) {
+        return x.name === entry.name && x.year === entry.year && x.team === entry.team && x.month === entry.month;
+      });
+      if (dup) return;
+      state.titleHistory.unshift(entry);
+      if (state.titleHistory.length > 80) state.titleHistory.length = 80;
+    }
+
+    function hltvAvgRating() {
+      ensureHltvProfile();
+      const s = state.hltvStats;
+      if (!s.ratingN) return (state.peakRating || 0.95);
+      return s.ratingSum / s.ratingN;
+    }
+
+    function recordHltvMatch(won, rating) {
+      ensureHltvProfile();
+      const s = state.hltvStats;
+      s.maps = (s.maps || 0) + 1;
+      if (won) s.wins = (s.wins || 0) + 1;
+      else s.losses = (s.losses || 0) + 1;
+      if (rating != null) {
+        s.ratingSum = (s.ratingSum || 0) + rating;
+        s.ratingN = (s.ratingN || 0) + 1;
+      }
+    }
+
+    function renderHltvProfile() {
+      ensureHltvProfile();
+      // se ainda não tem histórico mas tem time, registra
+      if (state.team && state.team.name && !state.teamHistory.length) {
+        recordTeamJoin(state.team, "start");
+      }
+      const avg = hltvAvgRating();
+      const maps = state.hltvStats.maps || 0;
+      const wins = state.hltvStats.wins || 0;
+      const losses = state.hltvStats.losses || 0;
+      const wr = (wins + losses) > 0 ? Math.round(100 * wins / (wins + losses)) : 0;
+      const majors = state.majors || 0;
+      const titles = state.trophies || 0;
+      const pr = state.playerRank || "—";
+      const best = state.bestRank || pr;
+      const role = state.role || (state.isCoach ? "Coach" : "Rifler");
+      const age = state.age || 18;
+      const nat = state.nationality || "—";
+      const curTeam = (state.team && state.team.name) || "Free Agent";
+
+      let teamsHtml = "";
+      const hist = (state.teamHistory || []).slice().reverse();
+      if (!hist.length) {
+        teamsHtml = `<p style="color:var(--muted);font-size:0.82rem;">Nenhum time registrado ainda.</p>`;
+      } else {
+        hist.forEach(function(h) {
+          const from = (h.fromYear || "?") + (h.fromMonth ? "/" + h.fromMonth : "");
+          const to = h.toYear ? (h.toYear + (h.toMonth ? "/" + h.toMonth : "")) : "present";
+          const tier = h.tier ? ("T" + h.tier) : "";
+          teamsHtml += `<div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:8px;font-size:0.84rem;">
+            <div><strong>${h.team}</strong> <span style="color:var(--muted);font-size:0.72rem;">${tier}</span></div>
+            <div style="color:var(--muted);white-space:nowrap;font-size:0.78rem;">${from} – ${to}</div>
+          </div>`;
+        });
+      }
+
+      let titlesHtml = "";
+      const th = state.titleHistory || [];
+      if (!th.length) {
+        titlesHtml = `<p style="color:var(--muted);font-size:0.82rem;">Nenhum título ainda. Vença campeonatos para montar o cabinet.</p>`;
+      } else {
+        th.forEach(function(ti) {
+          const badge = ti.major
+            ? `<span style="background:rgba(240,193,75,0.2);color:var(--gold);padding:2px 6px;border-radius:6px;font-size:0.68rem;font-weight:800;">MAJOR</span>`
+            : ti.prestige >= 4
+              ? `<span style="background:rgba(0,231,1,0.15);color:var(--accent2);padding:2px 6px;border-radius:6px;font-size:0.68rem;">S-tier</span>`
+              : `<span style="background:rgba(255,255,255,0.06);color:var(--muted);padding:2px 6px;border-radius:6px;font-size:0.68rem;">T${ti.prestige||"—"}</span>`;
+          const mvp = ti.mvp ? ` · <span style="color:var(--gold);">MVP</span>` : "";
+          titlesHtml += `<div style="padding:8px 0;border-bottom:1px solid var(--border);font-size:0.84rem;">
+            <div style="display:flex;justify-content:space-between;gap:8px;align-items:center;">
+              <strong>${ti.name}</strong> ${badge}
+            </div>
+            <div style="color:var(--muted);font-size:0.75rem;margin-top:2px;">${ti.team} · ${ti.year}${mvp}${ti.coach ? " · Coach" : ""}</div>
+          </div>`;
+        });
+      }
+
+      return `
+        <div style="padding:12px;border-radius:14px;border:1px solid rgba(240,193,75,0.35);background:linear-gradient(160deg,rgba(240,193,75,0.08),rgba(0,0,0,0.2));margin-bottom:12px;">
+          <div style="font-size:0.7rem;color:var(--gold);font-weight:800;letter-spacing:0.06em;">HLTV.org PROFILE</div>
+          <div style="font-size:1.35rem;font-weight:900;margin-top:4px;">${state.name || "Player"}</div>
+          <div style="font-size:0.82rem;color:var(--muted);margin-top:2px;">${nat} · ${age} yrs · ${role}${state.isCoach ? " (Coach)" : ""}</div>
+          <div style="margin-top:8px;font-size:0.88rem;">Current team: <strong style="color:var(--accent2);">${curTeam}</strong></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+          <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;">
+            <div style="font-size:0.65rem;color:var(--muted);">RATING</div>
+            <div style="font-size:1.25rem;font-weight:800;color:var(--gold);">${avg.toFixed(2)}</div>
+          </div>
+          <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;">
+            <div style="font-size:0.65rem;color:var(--muted);">WORLD</div>
+            <div style="font-size:1.25rem;font-weight:800;">#${pr}</div>
+            <div style="font-size:0.65rem;color:var(--muted);">best #${best}</div>
+          </div>
+          <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;">
+            <div style="font-size:0.65rem;color:var(--muted);">MAPS</div>
+            <div style="font-size:1.25rem;font-weight:800;">${maps}</div>
+            <div style="font-size:0.65rem;color:var(--muted);">${wr}% WR</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+          <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;">
+            <div style="font-size:0.65rem;color:var(--muted);">MAJORS</div>
+            <div style="font-size:1.2rem;font-weight:800;color:var(--gold);">${majors}</div>
+            <div style="font-size:0.65rem;color:var(--muted);">MVP ${state.majorMVPs||0}</div>
+          </div>
+          <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;">
+            <div style="font-size:0.65rem;color:var(--muted);">TROPHIES</div>
+            <div style="font-size:1.2rem;font-weight:800;color:var(--accent2);">${titles}</div>
+            <div style="font-size:0.65rem;color:var(--muted);">HLTV#1 ${state.hltvNumber1||0}x</div>
+          </div>
+        </div>
+
+        <p style="font-weight:800;color:var(--accent2);margin:0 0 6px;">📋 Teams</p>
+        <div style="margin-bottom:14px;">${teamsHtml}</div>
+
+        <p style="font-weight:800;color:var(--gold);margin:0 0 6px;">🏆 Trophy cabinet</p>
+        <div>${titlesHtml}</div>
+      `;
     }
 
     function finishCoachDraft() {
@@ -6966,6 +7151,16 @@ function toggleLanguage() {
       const tier = state.team ? state.team.tier : 4;
       const teamName = state.team ? state.team.name : "";
       const roster = TEAM_ROSTERS[teamName];
+      try {
+        if (state.team && state.team.name) {
+          ensureHltvProfile();
+          if (!state.teamHistory.length) recordTeamJoin(state.team, "start");
+          else {
+            const last = state.teamHistory[state.teamHistory.length - 1];
+            if (!last || last.team !== state.team.name || last.toYear) recordTeamJoin(state.team, "roster");
+          }
+        }
+      } catch (e) {}
 
       // Coach não joga — line com 5 jogadores
       if (state.isCoach) {
@@ -7853,6 +8048,7 @@ function toggleLanguage() {
           try { AudioFX.transfer(); } catch (e) {}
           addLog("🔄 Agente fechou: " + state.team.name + " → " + team.name);
           state.team = team;
+          try { recordTeamJoin(team, "agent"); } catch (e) {}
           state.transfers = (state.transfers || 0) + 1;
           state.contractYears = team.tier === 1 ? rand(1, 3) : rand(1, 2);
           state.transferListed = false;
@@ -8796,6 +8992,7 @@ function toggleLanguage() {
           majorMVP = true;
           state.majorMVPs++;
         }
+        try { recordTitle("CS Major", { prestige: 5, major: true, mvp: majorMVP }); } catch (e) {}
       }
       // tier 2 quase nunca ganha Major “direto” (precisa de convite/live)
       else if (state.team.tier === 2 && state.age >= 18 && rating >= 1.15 && seededRandom() < 0.04) {
@@ -8803,12 +9000,17 @@ function toggleLanguage() {
         state.majors++;
         trophiesThisYear++;
         state.trophies++;
+        try { recordTitle("CS Major", { prestige: 5, major: true }); } catch (e) {}
       }
 
       // outros títulos (CCT, liga regional, etc.)
       if (state.team.tier <= 3 && seededRandom() < winChance * 0.28) {
         trophiesThisYear++;
         state.trophies++;
+        try {
+          const tName = pick(["CCT Regional", "ESL Challenger", "Regional League", "Qualifiers Cup", "National Championship", "Open Bracket Final"]);
+          recordTitle(tName, { prestige: state.team.tier === 1 ? 4 : state.team.tier === 2 ? 3 : 2 });
+        } catch (e) {}
       }
 
       // HLTV — só conta em time competitivo e idade pro
@@ -9532,6 +9734,7 @@ function toggleLanguage() {
           AudioFX.transfer();
           addLog(`🔄 Transferência: ${state.team.name} → ${team.name}`);
           state.team = team;
+          try { recordTeamJoin(team, "transfer"); } catch (e) {}
           state.transfers++;
           state.contractYears = team.tier === 1 ? rand(1, 3) : rand(1, 2);
           state.form = Math.min(state.form || 0, 1);
@@ -11924,6 +12127,8 @@ function toggleLanguage() {
         }
         html += `<p style="margin-top:10px;font-size:0.75rem;color:var(--muted);">Majors: meio do ano e final do ano · RMR antes · Faceit/GC o ano todo no amador.</p>`;
         panel.innerHTML = html;
+      } else if (type === "hltv") {
+        panel.innerHTML = renderHltvProfile();
       } else if (type === "rank") {
         const pr = state.playerRank;
         const tr = state.team.rank || "—";
@@ -15282,6 +15487,9 @@ window.cookPartner = function() {
           state.coachTitles = (state.coachTitles || 0) + 1;
           addLog(`🎧 Título como COACH (#${state.coachTitles})`);
         }
+        try {
+          recordTitle(tourney.name, { prestige: tourney.prestige || 3, major: (tourney.prestige || 0) >= 5 });
+        } catch (e) {}
         awardTournamentMoney(tourney, "champion", "campeão");
         state.recentResults = (state.recentResults || []).concat(["W"]).slice(-8);
         if (tourney.prestige >= 5) {
